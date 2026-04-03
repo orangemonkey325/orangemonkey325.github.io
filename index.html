@@ -6,9 +6,6 @@
 <title>ECHOES OF THE LOST REALM</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   ROOT VARIABLES & RESET
-   ============================================================ */
 :root {
   --gold: #d4a017;
   --gold-light: #f0c040;
@@ -28,9 +25,7 @@
   --font-ui: 'Cinzel', serif;
   --font-body: 'Crimson Text', serif;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
-
 body {
   background: var(--dark);
   display: flex; align-items: center; justify-content: center;
@@ -38,10 +33,6 @@ body {
   font-family: var(--font-body);
   overflow: hidden;
 }
-
-/* ============================================================
-   MAIN GAME WRAPPER
-   ============================================================ */
 #game-wrapper {
   width: 960px; height: 640px;
   position: relative;
@@ -49,10 +40,6 @@ body {
   box-shadow: 0 0 80px rgba(212,160,23,0.15), 0 0 160px rgba(0,0,0,0.8);
   border: 1px solid rgba(212,160,23,0.2);
 }
-
-/* ============================================================
-   TITLE SCREEN
-   ============================================================ */
 #title-screen {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at 50% 40%, #1a0a2e 0%, #0a0514 50%, #000 100%);
@@ -60,14 +47,12 @@ body {
   z-index: 200;
   gap: 24px;
 }
-
 .ts-stars { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .ts-star {
   position: absolute; background: #fff; border-radius: 50%;
   animation: starTwinkle linear infinite alternate;
 }
 @keyframes starTwinkle { from{opacity:0.05} to{opacity:0.9} }
-
 .ts-logo {
   font-family: var(--font-title);
   font-size: 20px;
@@ -81,21 +66,17 @@ body {
   from { text-shadow: 0 0 20px rgba(212,160,23,0.4),0 0 40px rgba(212,160,23,0.1); }
   to   { text-shadow: 0 0 40px rgba(212,160,23,0.8),0 0 80px rgba(212,160,23,0.3); }
 }
-
 .ts-subtitle {
   font-family: var(--font-ui); font-size: 15px;
   color: rgba(212,160,23,0.6); letter-spacing: 6px; text-transform: uppercase;
 }
-
 .ts-hero { font-size: 64px; animation: heroFloat 3s ease-in-out infinite alternate; }
 @keyframes heroFloat { from{transform:translateY(0)} to{transform:translateY(-10px)} }
-
 .ts-story {
   font-family: var(--font-body); font-size: 15px;
   color: var(--text-dim); text-align: center; max-width: 480px; line-height: 1.8;
   font-style: italic;
 }
-
 .ts-btn {
   font-family: var(--font-title); font-size: 11px;
   color: var(--emerald); border: 2px solid var(--emerald);
@@ -113,29 +94,18 @@ body {
 .ts-btn:hover::before { transform: translateX(100%); }
 .ts-btn:hover { box-shadow: 0 0 20px rgba(39,174,96,0.4); }
 @keyframes btnBlink { 0%,49%{opacity:1} 50%,100%{opacity:0.4} }
-
 .ts-controls {
   font-size: 13px; color: #555; text-align: center; line-height: 2.2;
   font-family: var(--font-body);
 }
-
 .ts-version { position: absolute; bottom: 12px; right: 16px; font-size: 11px; color: #333; font-family: var(--font-title); }
-
-/* ============================================================
-   CANVAS
-   ============================================================ */
 #game-canvas { display: block; position: absolute; inset: 0; }
-
-/* ============================================================
-   TOP HUD
-   ============================================================ */
 #hud-top {
   position: absolute; top: 0; left: 0; right: 0; height: 56px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 80%, transparent 100%);
   display: flex; align-items: center; padding: 0 14px; gap: 20px;
   pointer-events: none; z-index: 30;
 }
-
 .hud-portrait {
   width: 40px; height: 40px; border-radius: 50%;
   background: var(--dark3);
@@ -144,9 +114,7 @@ body {
   font-size: 20px; flex-shrink: 0;
   box-shadow: 0 0 12px rgba(212,160,23,0.3);
 }
-
 .hud-bars { display: flex; flex-direction: column; gap: 5px; flex: 1; max-width: 200px; }
-
 .bar-row { display: flex; align-items: center; gap: 6px; }
 .bar-label { font-size: 9px; font-family: var(--font-title); width: 18px; }
 .bar-bg {
@@ -162,7 +130,6 @@ body {
 .hp-fill  { background: linear-gradient(90deg, #c0392b, #e74c3c); }
 .mp-fill  { background: linear-gradient(90deg, #1a5276, #2980b9); }
 .bar-num { font-size: 9px; color: var(--text-dim); min-width: 52px; font-family: var(--font-title); }
-
 .hud-level {
   font-family: var(--font-title); font-size: 9px;
   color: var(--gold); text-align: center;
@@ -170,7 +137,6 @@ body {
   border: 1px solid rgba(212,160,23,0.2);
   padding: 4px 8px; border-radius: 4px;
 }
-
 .hud-xp-bar {
   width: 100px; height: 4px;
   background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
@@ -180,20 +146,14 @@ body {
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
   transition: width 0.5s;
 }
-
 .hud-gold {
   font-family: var(--font-title); font-size: 9px;
   color: var(--gold-light); margin-left: auto;
 }
-
 .hud-map-name {
   font-size: 13px; font-family: var(--font-ui);
   color: var(--text-dim); letter-spacing: 1px; white-space: nowrap;
 }
-
-/* ============================================================
-   HOTBAR (BOTTOM)
-   ============================================================ */
 #hotbar {
   position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 4px; z-index: 30;
@@ -212,10 +172,6 @@ body {
 .hslot-key { position: absolute; top: 2px; left: 4px; font-size: 7px; color: #555; font-family: var(--font-title); }
 .hslot-count { position: absolute; bottom: 1px; right: 4px; font-size: 9px; color: var(--text-dim); font-family: var(--font-title); }
 .hslot-empty { opacity: 0.25; }
-
-/* ============================================================
-   MINIMAP
-   ============================================================ */
 #minimap-wrap {
   position: absolute; bottom: 8px; right: 10px;
   width: 100px; height: 100px;
@@ -227,10 +183,6 @@ body {
   font-family: var(--font-title); margin-top: 3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-
-/* ============================================================
-   QUEST TRACKER
-   ============================================================ */
 #quest-tracker {
   position: absolute; top: 60px; right: 10px;
   width: 190px; z-index: 30;
@@ -249,10 +201,6 @@ body {
 .qt-qname { font-size: 11px; color: var(--gold-light); font-family: var(--font-ui); }
 .qt-qobj  { font-size: 12px; color: var(--text-dim); margin-top: 2px; line-height: 1.4; }
 .qt-qprog { font-size: 10px; color: var(--emerald); margin-top: 2px; font-family: var(--font-title); }
-
-/* ============================================================
-   MESSAGE LOG
-   ============================================================ */
 #msg-log {
   position: absolute; bottom: 64px; left: 10px;
   width: 300px; z-index: 30; pointer-events: none;
@@ -273,17 +221,12 @@ body {
 .msg-system  { color: var(--gold-light); }
 .msg-story   { color: #d4a0d4; font-style: italic; }
 .msg-heal    { color: #70e0a0; }
-
-/* ============================================================
-   DIALOG BOX
-   ============================================================ */
 #dialog-overlay {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.4);
   z-index: 50; display: none; align-items: flex-end; padding-bottom: 10px;
 }
 #dialog-overlay.open { display: flex; }
-
 #dialog-box {
   width: 100%; padding: 16px 20px;
   background: linear-gradient(to bottom, rgba(8,6,16,0.97), rgba(4,3,10,0.98));
@@ -292,7 +235,6 @@ body {
   box-shadow: 0 -10px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(212,160,23,0.1);
   position: relative;
 }
-
 .dlg-portrait {
   position: absolute; top: -28px; left: 20px;
   width: 52px; height: 52px; border-radius: 50%;
@@ -300,24 +242,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 26px; box-shadow: 0 0 20px rgba(212,160,23,0.3);
 }
-
 .dlg-name {
   font-family: var(--font-ui); font-size: 14px;
   color: var(--gold-light); margin-left: 60px; margin-bottom: 6px;
   letter-spacing: 1px;
 }
-
 .dlg-text {
   font-family: var(--font-body); font-size: 16px;
   color: var(--text); line-height: 1.6; min-height: 44px;
   margin-left: 60px;
 }
-
 .dlg-options {
   display: flex; gap: 8px; flex-wrap: wrap;
   margin-top: 12px; margin-left: 60px;
 }
-
 .dlg-opt {
   font-family: var(--font-body); font-size: 14px;
   color: var(--emerald); border: 1px solid rgba(39,174,96,0.4);
@@ -328,19 +266,13 @@ body {
 .dlg-opt:hover { background: rgba(39,174,96,0.15); box-shadow: 0 0 10px rgba(39,174,96,0.3); }
 .dlg-opt.quest-opt { color: var(--gold-light); border-color: rgba(212,160,23,0.4); background: rgba(212,160,23,0.06); }
 .dlg-opt.quest-opt:hover { background: rgba(212,160,23,0.12); }
-
 .dlg-continue { font-size: 11px; color: #444; font-family: var(--font-title); text-align: right; margin-top: 6px; animation: btnBlink 1.2s step-end infinite; }
-
-/* ============================================================
-   INVENTORY / SHOP PANEL
-   ============================================================ */
 #inv-panel {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.75);
   z-index: 60; display: none; align-items: center; justify-content: center;
 }
 #inv-panel.open { display: flex; }
-
 .inv-window {
   width: 660px; background: linear-gradient(160deg, #0d0a1a 0%, #060410 100%);
   border: 2px solid var(--gold);
@@ -348,7 +280,6 @@ body {
   box-shadow: 0 0 60px rgba(212,160,23,0.15), 0 0 120px rgba(0,0,0,0.8);
   overflow: hidden;
 }
-
 .inv-header {
   background: rgba(212,160,23,0.08);
   border-bottom: 1px solid var(--border);
@@ -370,13 +301,10 @@ body {
   transition: all 0.2s;
 }
 .inv-close:hover { background: rgba(192,57,43,0.15); }
-
 .inv-body { display: flex; gap: 0; }
-
 .inv-grid-wrap { padding: 14px; flex: 1; }
 .inv-section-title { font-family: var(--font-title); font-size: 8px; color: var(--text-dim); margin-bottom: 8px; }
 .inv-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-
 .inv-slot {
   aspect-ratio: 1; background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.07);
@@ -388,7 +316,6 @@ body {
 .inv-slot.filled { border-color: rgba(255,255,255,0.15); }
 .inv-slot-count { position: absolute; bottom: 1px; right: 3px; font-size: 8px; color: var(--text-dim); font-family: var(--font-title); }
 .inv-slot-equip { position: absolute; top: 1px; right: 2px; font-size: 7px; color: var(--gold); font-family: var(--font-title); }
-
 .inv-detail {
   width: 200px; border-left: 1px solid var(--border);
   padding: 16px; display: flex; flex-direction: column; gap: 8px;
@@ -407,17 +334,12 @@ body {
   transition: all 0.2s; text-align: center;
 }
 .inv-use-btn:hover { background: rgba(212,160,23,0.18); }
-
-/* ============================================================
-   QUEST LOG PANEL
-   ============================================================ */
 #quest-panel {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.75);
   z-index: 60; display: none; align-items: center; justify-content: center;
 }
 #quest-panel.open { display: flex; }
-
 .quest-window {
   width: 640px; height: 460px;
   background: linear-gradient(160deg, #0d0a1a, #060410);
@@ -455,10 +377,6 @@ body {
 .qd-obj.done { color: var(--emerald); text-decoration: line-through; }
 .qd-reward-title { font-family: var(--font-title); font-size: 8px; color: var(--gold); margin-top: 14px; margin-bottom: 6px; }
 .qd-reward { font-size: 14px; color: var(--gold-light); }
-
-/* ============================================================
-   SHOP PANEL
-   ============================================================ */
 #shop-panel {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.75);
@@ -488,10 +406,6 @@ body {
 .shop-item-desc { font-size: 11px; color: var(--text-dim); margin-bottom: 8px; line-height: 1.4; }
 .shop-item-price { font-family: var(--font-title); font-size: 9px; color: var(--gold-light); }
 .shop-item.cant-afford { opacity: 0.4; }
-
-/* ============================================================
-   GAME OVER / WIN SCREEN
-   ============================================================ */
 #end-screen {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.92);
@@ -511,10 +425,6 @@ body {
   transition: all 0.2s;
 }
 .end-btn:hover { background: rgba(212,160,23,0.2); box-shadow: 0 0 20px rgba(212,160,23,0.3); }
-
-/* ============================================================
-   COMBAT FLASH
-   ============================================================ */
 #combat-flash {
   position: absolute; inset: 0;
   pointer-events: none; z-index: 25;
@@ -522,10 +432,6 @@ body {
 }
 #combat-flash.red { background: rgba(200,0,0,0.18); }
 #combat-flash.gold { background: rgba(212,160,23,0.12); }
-
-/* ============================================================
-   AREA TRANSITION
-   ============================================================ */
 #area-transition {
   position: absolute; inset: 0;
   background: #000; z-index: 90;
@@ -542,10 +448,6 @@ body {
 }
 .area-name-big.show { opacity: 1; }
 .area-name-sub { font-family: var(--font-ui); font-size: 14px; color: var(--text-dim); margin-top: 6px; }
-
-/* ============================================================
-   LEVEL UP POPUP
-   ============================================================ */
 #levelup-popup {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%) scale(0);
@@ -564,7 +466,6 @@ body {
 <body>
 <div id="game-wrapper">
 
-  <!-- ====== TITLE SCREEN ====== -->
   <div id="title-screen">
     <div class="ts-stars" id="ts-stars"></div>
     <div class="ts-hero">⚔️</div>
@@ -580,13 +481,11 @@ body {
       WASD / Arrows — Move &nbsp;|&nbsp; E / Space — Interact &amp; Attack<br>
       I — Inventory &nbsp;|&nbsp; Q — Quest Log &nbsp;|&nbsp; 1-5 — Use Hotbar Items
     </div>
-    <div class="ts-version">v2.0</div>
+    <div class="ts-version">v2.1</div>
   </div>
 
-  <!-- ====== GAME CANVAS ====== -->
   <canvas id="game-canvas" width="960" height="640"></canvas>
 
-  <!-- ====== TOP HUD ====== -->
   <div id="hud-top">
     <div class="hud-portrait" id="hud-portrait">🧙</div>
     <div class="hud-bars">
@@ -609,31 +508,47 @@ body {
     <div class="hud-gold" id="hud-gold">💰 0G</div>
   </div>
 
-  <!-- ====== HOTBAR ====== -->
+  <!-- HOTBAR — all IDs fixed: hi-0..4 and hc-0..4 -->
   <div id="hotbar">
-    <div class="hslot active" id="hs-0" onclick="useHotbar(0)"><span class="hslot-key">1</span><span id="hi-0" class="hslot-empty">—</span><span class="hslot-count" id="hc-0"></span></div>
-    <div class="hslot" id="hs-1" onclick="useHotbar(1)"><span class="hslot-key">2</span><span id="hi-1" class="hslot-empty">—</span><span class="hslot-count" id="hc-2"></span></div>
-    <div class="hslot" id="hs-2" onclick="useHotbar(2)"><span class="hslot-key">3</span><span id="hi-2" class="hslot-empty">—</span><span class="hslot-count" id="hc-3"></span></div>
-    <div class="hslot" id="hs-3" onclick="useHotbar(3)"><span class="hslot-key">4</span><span id="hi-3" class="hslot-empty">—</span><span class="hslot-count" id="hc-4"></span></div>
-    <div class="hslot" id="hs-4" onclick="useHotbar(4)"><span class="hslot-key">5</span><span id="hi-4" class="hslot-empty">—</span><span class="hslot-count" id="hc-5"></span></div>
+    <div class="hslot active" id="hs-0" onclick="useHotbar(0)">
+      <span class="hslot-key">1</span>
+      <span id="hi-0" class="hslot-empty">—</span>
+      <span class="hslot-count" id="hc-0"></span>
+    </div>
+    <div class="hslot" id="hs-1" onclick="useHotbar(1)">
+      <span class="hslot-key">2</span>
+      <span id="hi-1" class="hslot-empty">—</span>
+      <span class="hslot-count" id="hc-1"></span>
+    </div>
+    <div class="hslot" id="hs-2" onclick="useHotbar(2)">
+      <span class="hslot-key">3</span>
+      <span id="hi-2" class="hslot-empty">—</span>
+      <span class="hslot-count" id="hc-2"></span>
+    </div>
+    <div class="hslot" id="hs-3" onclick="useHotbar(3)">
+      <span class="hslot-key">4</span>
+      <span id="hi-3" class="hslot-empty">—</span>
+      <span class="hslot-count" id="hc-3"></span>
+    </div>
+    <div class="hslot" id="hs-4" onclick="useHotbar(4)">
+      <span class="hslot-key">5</span>
+      <span id="hi-4" class="hslot-empty">—</span>
+      <span class="hslot-count" id="hc-4"></span>
+    </div>
   </div>
 
-  <!-- ====== MINIMAP ====== -->
   <div id="minimap-wrap">
     <canvas id="minimap-canvas" width="100" height="100"></canvas>
     <div class="minimap-label" id="mm-label">Millhaven</div>
   </div>
 
-  <!-- ====== QUEST TRACKER ====== -->
   <div id="quest-tracker">
     <div class="qt-header">📜 ACTIVE QUESTS</div>
     <div id="qt-list"></div>
   </div>
 
-  <!-- ====== MESSAGE LOG ====== -->
   <div id="msg-log"></div>
 
-  <!-- ====== DIALOG BOX ====== -->
   <div id="dialog-overlay">
     <div id="dialog-box">
       <div class="dlg-portrait" id="dlg-portrait">?</div>
@@ -644,7 +559,6 @@ body {
     </div>
   </div>
 
-  <!-- ====== INVENTORY PANEL ====== -->
   <div id="inv-panel">
     <div class="inv-window">
       <div class="inv-header">
@@ -673,7 +587,6 @@ body {
     </div>
   </div>
 
-  <!-- ====== QUEST LOG PANEL ====== -->
   <div id="quest-panel">
     <div class="quest-window">
       <div class="quest-win-header">
@@ -689,7 +602,6 @@ body {
     </div>
   </div>
 
-  <!-- ====== SHOP PANEL ====== -->
   <div id="shop-panel">
     <div class="shop-window">
       <div class="shop-header">
@@ -701,10 +613,8 @@ body {
     </div>
   </div>
 
-  <!-- ====== COMBAT FLASH ====== -->
   <div id="combat-flash"></div>
 
-  <!-- ====== AREA TRANSITION ====== -->
   <div id="area-transition">
     <div class="area-name-big" id="area-name-big">
       <div id="area-name-text"></div>
@@ -712,14 +622,12 @@ body {
     </div>
   </div>
 
-  <!-- ====== LEVEL UP POPUP ====== -->
   <div id="levelup-popup">
     <div class="lu-title">⭐ LEVEL UP! ⭐</div>
     <div class="lu-level" id="lu-level-num">2</div>
     <div class="lu-stats" id="lu-stats"></div>
   </div>
 
-  <!-- ====== END SCREEN ====== -->
   <div id="end-screen">
     <div class="end-icon" id="end-icon">💀</div>
     <div class="end-title" id="end-title" style="color:#e74c3c">YOU HAVE FALLEN</div>
@@ -728,13 +636,8 @@ body {
     <button class="end-btn" onclick="restartGame()">↺ RISE AGAIN</button>
   </div>
 
-</div><!-- end game-wrapper -->
+</div>
 <script>
-/* ================================================================
-   ECHOES OF THE LOST REALM — Full Game Engine
-   ================================================================ */
-
-// ── TILE CONSTANTS ───────────────────────────────────────────────
 const T = {
   VOID:0, GRASS:1, DIRT:2, STONE:3, WALL:4, WATER:5,
   TREE:6, CHEST:7, DOOR:8, DEEP_WATER:9, PORTAL:10,
@@ -749,21 +652,16 @@ const TILE = 48;
 const MAP_COLS = 25, MAP_ROWS = 20;
 const VW = 960, VH = 640;
 
-// ── GAME VARIABLES ───────────────────────────────────────────────
 const canvas = document.getElementById('game-canvas');
 const ctx    = canvas.getContext('2d');
 const mmCv   = document.getElementById('minimap-canvas');
 const mmCtx  = mmCv.getContext('2d');
 
-let G = {}; // Global game state — reset on start
+let G = {};
 
-// ── MAP DEFINITIONS ──────────────────────────────────────────────
 const MAP_DEFS = {
-
   village: {
-    name: 'Millhaven Village',
-    theme: 'village',
-    music: '🌿',
+    name: 'Millhaven Village', theme: 'village', music: '🌿',
     ambience: 'Birdsong fills the air.',
     raw: [
       "4444444444444444444444444",
@@ -788,28 +686,25 @@ const MAP_DEFS = {
       "4444444444444444444444444",
     ],
     portals: [
-      { tx:12,ty:13, toMap:'forest',  toX:12,toY:2,  label:'→ Whispering Forest',reqFlag:null },
+      { tx:12,ty:13, toMap:'forest', toX:12,toY:2, label:'→ Whispering Forest', reqFlag:null },
     ],
     npcs: [
-      { tx:7,ty:5,  emoji:'👴',name:'Elder Aldric', color:'#c0a0ff', dialog: DIALOG_VILLAGE_ALDRIC },
-      { tx:17,ty:5, emoji:'🏪',name:'Merchant Brom', color:'#ffd700', shop: 'village_shop' },
-      { tx:8,ty:10, emoji:'⚔️',name:'Guard Gregor',  color:'#a0c0ff', dialog: DIALOG_GUARD },
-      { tx:16,ty:10,emoji:'👧',name:'Mia',           color:'#ffb0d0', dialog: DIALOG_MIA },
-      { tx:12,ty:16,emoji:'🧙',name:'Sage Evara',    color:'#80c0ff', dialog: DIALOG_SAGE },
+      { tx:7, ty:5,  emoji:'👴', name:'Elder Aldric',   color:'#c0a0ff', dialog: DIALOG_VILLAGE_ALDRIC },
+      { tx:17,ty:5,  emoji:'🏪', name:'Merchant Brom',  color:'#ffd700', shop: 'village_shop' },
+      { tx:8, ty:10, emoji:'⚔️', name:'Guard Gregor',   color:'#a0c0ff', dialog: DIALOG_GUARD },
+      { tx:16,ty:10, emoji:'👧', name:'Mia',            color:'#ffb0d0', dialog: DIALOG_MIA },
+      { tx:12,ty:16, emoji:'🧙', name:'Sage Evara',     color:'#80c0ff', dialog: DIALOG_SAGE },
     ],
     enemies: [],
     chests: [
-      { tx:3,ty:3,   loot:{ type:'item', id:'potion_health',count:2 }},
+      { tx:3, ty:3,  loot:{ type:'item', id:'potion_health', count:2 }},
       { tx:22,ty:3,  loot:{ type:'gold', amount:30 }},
-      { tx:3,ty:16,  loot:{ type:'item', id:'potion_health',count:1 }},
+      { tx:3, ty:16, loot:{ type:'item', id:'potion_health', count:1 }},
     ],
     checkpoint: { tx:12, ty:8 },
   },
-
   forest: {
-    name: 'Whispering Forest',
-    theme: 'forest',
-    music: '🌲',
+    name: 'Whispering Forest', theme: 'forest', music: '🌲',
     ambience: 'Leaves rustle in the dark.',
     raw: [
       "6666666666666666666666666",
@@ -834,38 +729,35 @@ const MAP_DEFS = {
       "6666666666666666666666666",
     ],
     portals: [
-      { tx:12,ty:2, toMap:'village', toX:12,toY:14, label:'← Millhaven Village' },
-      { tx:22,ty:11,toMap:'cave',    toX:2, toY:10,  label:'→ Grimstone Cave',  reqFlag:'quest_mia_cat' },
-      { tx:12,ty:18,toMap:'swamp',   toX:12,toY:2,  label:'→ Murkmire Swamp',  reqFlag:'forest_cleared' },
+      { tx:12,ty:2,  toMap:'village', toX:12,toY:14, label:'← Millhaven Village' },
+      { tx:22,ty:11, toMap:'cave',    toX:2, toY:10,  label:'→ Grimstone Cave',   reqFlag:'quest_mia_cat' },
+      { tx:12,ty:18, toMap:'swamp',   toX:12,toY:2,  label:'→ Murkmire Swamp',   reqFlag:'forest_cleared' },
     ],
     npcs: [
-      { tx:6,ty:9,  emoji:'🧝',name:'Sylva the Scout', color:'#90e090', dialog: DIALOG_SYLVA },
-      { tx:18,ty:5, emoji:'🐱',name:'Lost Cat',        color:'#ffcc80', dialog: DIALOG_CAT, questFlag:'quest_mia_cat' },
+      { tx:6, ty:9,  emoji:'🧝', name:'Sylva the Scout', color:'#90e090', dialog: DIALOG_SYLVA },
+      { tx:18,ty:5,  emoji:'🐱', name:'Lost Cat',        color:'#ffcc80', dialog: DIALOG_CAT, questFlag:'quest_mia_cat' },
     ],
     enemies: [
-      { tx:5,ty:5,  emoji:'🐺',name:'Forest Wolf',  hp:35, atk:8,  xp:18, gold:8,  drops:['potion_health'] },
-      { tx:15,ty:8, emoji:'🐺',name:'Forest Wolf',  hp:35, atk:8,  xp:18, gold:8,  drops:[] },
-      { tx:9,ty:13, emoji:'🕷️',name:'Giant Spider', hp:28, atk:6,  xp:14, gold:5,  drops:['potion_mana'] },
-      { tx:19,ty:13,emoji:'🕷️',name:'Giant Spider', hp:28, atk:6,  xp:14, gold:5,  drops:[] },
-      { tx:13,ty:6, emoji:'🦊',name:'Venom Fox',    hp:42, atk:10, xp:22, gold:12, drops:['herb_swift'] },
-      { tx:7,ty:15, emoji:'🐲',name:'Forest Drake', hp:60, atk:14, xp:35, gold:20, drops:['tooth_drake'], isBoss:true },
+      { tx:5, ty:5,  emoji:'🐺', name:'Forest Wolf',  hp:35, atk:8,  xp:18, gold:8,  drops:['potion_health'] },
+      { tx:15,ty:8,  emoji:'🐺', name:'Forest Wolf',  hp:35, atk:8,  xp:18, gold:8,  drops:[] },
+      { tx:9, ty:13, emoji:'🕷️', name:'Giant Spider', hp:28, atk:6,  xp:14, gold:5,  drops:['potion_mana'] },
+      { tx:19,ty:13, emoji:'🕷️', name:'Giant Spider', hp:28, atk:6,  xp:14, gold:5,  drops:[] },
+      { tx:13,ty:6,  emoji:'🦊', name:'Venom Fox',    hp:42, atk:10, xp:22, gold:12, drops:['herb_swift'] },
+      { tx:7, ty:15, emoji:'🐲', name:'Forest Drake', hp:60, atk:14, xp:35, gold:20, drops:['tooth_drake'], isBoss:true },
     ],
     chests: [
-      { tx:3,ty:1,  loot:{ type:'item', id:'sword_iron',count:1 }},
-      { tx:22,ty:16,loot:{ type:'gold', amount:50 }},
-      { tx:10,ty:16,loot:{ type:'item', id:'shield_wood',count:1 }},
+      { tx:3, ty:1,  loot:{ type:'item', id:'sword_iron',   count:1 }},
+      { tx:22,ty:16, loot:{ type:'gold', amount:50 }},
+      { tx:10,ty:16, loot:{ type:'item', id:'shield_wood',  count:1 }},
     ],
     checkpoint: { tx:12,ty:3 },
   },
-
   cave: {
-    name: 'Grimstone Cave',
-    theme: 'cave',
-    music: '🪨',
+    name: 'Grimstone Cave', theme: 'cave', music: '🪨',
     ambience: 'Dripping echoes surround you.',
     raw: [
-      "CCCCCCCCCCCCCCCCCCCCCCCC",
-      "CBBBBBBBBBBBBBBBBBBBBBC",
+      "CCCCCCCCCCCCCCCCCCCCCCCCC",
+      "CBBBBBBBBBBBBBBBBBBBBBBC",
       "CBBB44444B44444BBB4444BC",
       "CBBB4BBBB4BBBBB4BB4BBBBC",
       "CBBB4BBBB4BBBBB4BB4BBBBC",
@@ -886,35 +778,32 @@ const MAP_DEFS = {
       "CCCCCCCCCCCCCCCCCCCCCCC",
     ],
     portals: [
-      { tx:2, ty:10,toMap:'forest',  toX:21,toY:11, label:'← Whispering Forest' },
-      { tx:22,ty:10,toMap:'dungeon', toX:2, toY:10,  label:'→ Shadowlord\'s Keep', reqFlag:'cave_boss_dead' },
+      { tx:2, ty:10, toMap:'forest',  toX:21,toY:11, label:'← Whispering Forest' },
+      { tx:22,ty:10, toMap:'dungeon', toX:2, toY:10,  label:'→ Shadowlord\'s Keep', reqFlag:'cave_boss_dead' },
     ],
     npcs: [
-      { tx:12,ty:9, emoji:'⛏️',name:'Miner Thaddeus', color:'#aaa', dialog: DIALOG_MINER },
+      { tx:12,ty:9, emoji:'⛏️', name:'Miner Thaddeus', color:'#aaa', dialog: DIALOG_MINER },
     ],
     enemies: [
-      { tx:6,ty:3,  emoji:'💀',name:'Skeleton',     hp:55,  atk:12, xp:28, gold:15, drops:['bone_dust'] },
-      { tx:18,ty:3, emoji:'💀',name:'Skeleton',     hp:55,  atk:12, xp:28, gold:15, drops:[] },
-      { tx:8,ty:8,  emoji:'🦇',name:'Cave Bat',     hp:30,  atk:8,  xp:16, gold:7,  drops:[] },
-      { tx:16,ty:8, emoji:'🦇',name:'Cave Bat',     hp:30,  atk:8,  xp:16, gold:7,  drops:[] },
-      { tx:6,ty:13, emoji:'🐛',name:'Stone Worm',   hp:70,  atk:15, xp:35, gold:20, drops:['ore_iron'] },
-      { tx:18,ty:13,emoji:'🐛',name:'Stone Worm',   hp:70,  atk:15, xp:35, gold:20, drops:['ore_iron'] },
-      { tx:12,ty:16,emoji:'👹',name:'Cave Troll',   hp:120, atk:22, xp:70, gold:45, drops:['club_troll','potion_health'], isBoss:true, bossName:'GRIMTOOTH THE TROLL' },
+      { tx:6, ty:3,  emoji:'💀', name:'Skeleton',   hp:55,  atk:12, xp:28, gold:15, drops:['bone_dust'] },
+      { tx:18,ty:3,  emoji:'💀', name:'Skeleton',   hp:55,  atk:12, xp:28, gold:15, drops:[] },
+      { tx:8, ty:8,  emoji:'🦇', name:'Cave Bat',   hp:30,  atk:8,  xp:16, gold:7,  drops:[] },
+      { tx:16,ty:8,  emoji:'🦇', name:'Cave Bat',   hp:30,  atk:8,  xp:16, gold:7,  drops:[] },
+      { tx:6, ty:13, emoji:'🐛', name:'Stone Worm', hp:70,  atk:15, xp:35, gold:20, drops:['ore_iron'] },
+      { tx:18,ty:13, emoji:'🐛', name:'Stone Worm', hp:70,  atk:15, xp:35, gold:20, drops:['ore_iron'] },
+      { tx:12,ty:16, emoji:'👹', name:'Cave Troll', hp:120, atk:22, xp:70, gold:45, drops:['club_troll','potion_health'], isBoss:true, bossName:'GRIMTOOTH THE TROLL' },
     ],
     chests: [
-      { tx:4,ty:6,  loot:{ type:'item', id:'armor_leather',count:1 }},
-      { tx:20,ty:6, loot:{ type:'gold', amount:80 }},
-      { tx:12,ty:17,loot:{ type:'item', id:'ring_protection',count:1 }},
+      { tx:4, ty:6,  loot:{ type:'item', id:'armor_leather',   count:1 }},
+      { tx:20,ty:6,  loot:{ type:'gold', amount:80 }},
+      { tx:12,ty:17, loot:{ type:'item', id:'ring_protection', count:1 }},
     ],
     checkpoint: { tx:2, ty:10 },
     bossFlag: 'cave_boss_dead',
     bossEnemy: 'Cave Troll',
   },
-
   swamp: {
-    name: 'Murkmire Swamp',
-    theme: 'swamp',
-    music: '🌿',
+    name: 'Murkmire Swamp', theme: 'swamp', music: '🌿',
     ambience: 'Thick fog clings to the ground.',
     raw: [
       "5555555555555555555555555",
@@ -939,35 +828,32 @@ const MAP_DEFS = {
       "5555555555555555555555555",
     ],
     portals: [
-      { tx:12,ty:2, toMap:'forest',  toX:12,toY:17, label:'← Whispering Forest' },
-      { tx:12,ty:16,toMap:'dungeon', toX:12,toY:2,  label:'→ Shadowlord\'s Keep', reqFlag:'cave_boss_dead' },
+      { tx:12,ty:2,  toMap:'forest',  toX:12,toY:17, label:'← Whispering Forest' },
+      { tx:12,ty:16, toMap:'dungeon', toX:12,toY:2,  label:'→ Shadowlord\'s Keep', reqFlag:'cave_boss_dead' },
     ],
     npcs: [
-      { tx:8,ty:5,  emoji:'🧟',name:'Cursed Hermit',  color:'#90c060', dialog: DIALOG_HERMIT },
+      { tx:8,ty:5, emoji:'🧟', name:'Cursed Hermit', color:'#90c060', dialog: DIALOG_HERMIT },
     ],
     enemies: [
-      { tx:5,ty:3,  emoji:'🐊',name:'Swamp Croc',   hp:80,  atk:18, xp:42, gold:22, drops:['fang_croc'] },
-      { tx:19,ty:3, emoji:'🐊',name:'Swamp Croc',   hp:80,  atk:18, xp:42, gold:22, drops:[] },
-      { tx:6,ty:8,  emoji:'🐸',name:'Plague Frog',  hp:45,  atk:12, xp:25, gold:12, drops:['venom_sack'] },
-      { tx:18,ty:8, emoji:'🐸',name:'Plague Frog',  hp:45,  atk:12, xp:25, gold:12, drops:[] },
-      { tx:12,ty:14,emoji:'🌿',name:'Vine Horror',  hp:150, atk:28, xp:90, gold:60, drops:['staff_swamp','potion_health'], isBoss:true, bossName:'THE VINE HORROR' },
+      { tx:5, ty:3,  emoji:'🐊', name:'Swamp Croc',  hp:80,  atk:18, xp:42, gold:22, drops:['fang_croc'] },
+      { tx:19,ty:3,  emoji:'🐊', name:'Swamp Croc',  hp:80,  atk:18, xp:42, gold:22, drops:[] },
+      { tx:6, ty:8,  emoji:'🐸', name:'Plague Frog', hp:45,  atk:12, xp:25, gold:12, drops:['venom_sack'] },
+      { tx:18,ty:8,  emoji:'🐸', name:'Plague Frog', hp:45,  atk:12, xp:25, gold:12, drops:[] },
+      { tx:12,ty:14, emoji:'🌿', name:'Vine Horror', hp:150, atk:28, xp:90, gold:60, drops:['staff_swamp','potion_health'], isBoss:true, bossName:'THE VINE HORROR' },
     ],
     chests: [
-      { tx:3,ty:6,  loot:{ type:'item', id:'boots_swamp',count:1 }},
-      { tx:21,ty:6, loot:{ type:'gold', amount:100 }},
+      { tx:3, ty:6,  loot:{ type:'item', id:'boots_swamp', count:1 }},
+      { tx:21,ty:6,  loot:{ type:'gold', amount:100 }},
     ],
     checkpoint: { tx:12, ty:3 },
     bossFlag: 'swamp_boss_dead',
     bossEnemy: 'Vine Horror',
   },
-
   dungeon: {
-    name: "Shadowlord's Keep",
-    theme: 'dungeon',
-    music: '⚡',
+    name: "Shadowlord's Keep", theme: 'dungeon', music: '⚡',
     ambience: 'Dark energy crackles around you.',
     raw: [
-      "CCCCCCCCCCCCCCCCCCCCCCCC",
+      "CCCCCCCCCCCCCCCCCCCCCCCCC",
       "CBBBBBBBBBBBBBBBBBBBBBBC",
       "CBBB4444BBBBBBBBB4444BBC",
       "CBBB4BBB4BBBBBBB4BBB4BBC",
@@ -989,26 +875,26 @@ const MAP_DEFS = {
       "CCCCCCCCCCCCCCCCCCCCCCC",
     ],
     portals: [
-      { tx:2, ty:10, toMap:'cave',  toX:21,toY:10, label:'← Grimstone Cave' },
-      { tx:12, ty:3, toMap:'village', toX:12,toY:8, label:'← Millhaven (Escape)', reqFlag:'final_boss_dead' },
+      { tx:2,  ty:10, toMap:'cave',    toX:21,toY:10, label:'← Grimstone Cave' },
+      { tx:12, ty:3,  toMap:'village', toX:12,toY:8,  label:'← Millhaven (Escape)', reqFlag:'final_boss_dead' },
     ],
     npcs: [
-      { tx:12,ty:9, emoji:'👻',name:'Fallen Knight', color:'#c0c0ff', dialog: DIALOG_KNIGHT },
+      { tx:12,ty:9, emoji:'👻', name:'Fallen Knight', color:'#c0c0ff', dialog: DIALOG_KNIGHT },
     ],
     enemies: [
-      { tx:6,ty:3,  emoji:'🧟',name:'Undead Guard',  hp:100, atk:22, xp:55,  gold:30, drops:['shield_iron'] },
-      { tx:18,ty:3, emoji:'🧟',name:'Undead Guard',  hp:100, atk:22, xp:55,  gold:30, drops:[] },
-      { tx:6,ty:8,  emoji:'💀',name:'Death Knight',  hp:130, atk:28, xp:70,  gold:40, drops:['sword_shadow'] },
-      { tx:18,ty:8, emoji:'💀',name:'Death Knight',  hp:130, atk:28, xp:70,  gold:40, drops:[] },
-      { tx:5,ty:13, emoji:'🔮',name:'Dark Mage',     hp:90,  atk:35, xp:80,  gold:50, drops:['staff_dark'] },
-      { tx:19,ty:13,emoji:'🔮',name:'Dark Mage',     hp:90,  atk:35, xp:80,  gold:50, drops:[] },
-      { tx:12,ty:15,emoji:'👿',name:'THE SHADOWLORD', hp:300, atk:45, xp:500, gold:200, drops:['crystal_dawn','sword_light'], isBoss:true, bossName:'THE SHADOWLORD', isFinalBoss:true },
+      { tx:6, ty:3,  emoji:'🧟', name:'Undead Guard',    hp:100, atk:22, xp:55,  gold:30,  drops:['shield_iron'] },
+      { tx:18,ty:3,  emoji:'🧟', name:'Undead Guard',    hp:100, atk:22, xp:55,  gold:30,  drops:[] },
+      { tx:6, ty:8,  emoji:'💀', name:'Death Knight',    hp:130, atk:28, xp:70,  gold:40,  drops:['sword_shadow'] },
+      { tx:18,ty:8,  emoji:'💀', name:'Death Knight',    hp:130, atk:28, xp:70,  gold:40,  drops:[] },
+      { tx:5, ty:13, emoji:'🔮', name:'Dark Mage',       hp:90,  atk:35, xp:80,  gold:50,  drops:['staff_dark'] },
+      { tx:19,ty:13, emoji:'🔮', name:'Dark Mage',       hp:90,  atk:35, xp:80,  gold:50,  drops:[] },
+      { tx:12,ty:15, emoji:'👿', name:'THE SHADOWLORD',  hp:300, atk:45, xp:500, gold:200, drops:['crystal_dawn','sword_light'], isBoss:true, bossName:'THE SHADOWLORD', isFinalBoss:true },
     ],
     chests: [
-      { tx:3,ty:5,  loot:{ type:'item', id:'potion_mega',count:2 }},
-      { tx:21,ty:5, loot:{ type:'item', id:'armor_plate',count:1 }},
-      { tx:3,ty:14, loot:{ type:'gold', amount:200 }},
-      { tx:21,ty:14,loot:{ type:'item', id:'sword_holy',count:1 }},
+      { tx:3, ty:5,  loot:{ type:'item', id:'potion_mega', count:2 }},
+      { tx:21,ty:5,  loot:{ type:'item', id:'armor_plate', count:1 }},
+      { tx:3, ty:14, loot:{ type:'gold', amount:200 }},
+      { tx:21,ty:14, loot:{ type:'item', id:'sword_holy',  count:1 }},
     ],
     checkpoint: { tx:2, ty:10 },
     bossFlag: 'final_boss_dead',
@@ -1016,44 +902,36 @@ const MAP_DEFS = {
   },
 };
 
-// ── ITEM DEFINITIONS ─────────────────────────────────────────────
 const ITEMS = {
-  potion_health: { id:'potion_health', emoji:'🧪', name:'Health Potion',    type:'item', desc:'Restores 50 HP.',         heal:50,  gold:25 },
-  potion_mana:   { id:'potion_mana',   emoji:'💧', name:'Mana Potion',      type:'item', desc:'Restores 30 MP.',         mana:30,  gold:30 },
-  potion_mega:   { id:'potion_mega',   emoji:'⚗️', name:'Elixir of Life',   type:'item', desc:'Restores all HP & MP.',   heal:999, mana:999, gold:120 },
-  herb_swift:    { id:'herb_swift',    emoji:'🌿', name:'Swift Herb',        type:'item', desc:'Restores 25 HP.',         heal:25,  gold:15 },
-  bone_dust:     { id:'bone_dust',     emoji:'🦴', name:'Bone Dust',         type:'material', desc:'Crafting material.',              gold:10 },
-  tooth_drake:   { id:'tooth_drake',   emoji:'🦷', name:'Drake Tooth',       type:'material', desc:'A rare crafting material.',       gold:40 },
-  ore_iron:      { id:'ore_iron',      emoji:'🔩', name:'Iron Ore',          type:'material', desc:'Can be smelted into weapons.',    gold:20 },
-  fang_croc:     { id:'fang_croc',     emoji:'🦷', name:'Crocodile Fang',   type:'material', desc:'Crafting material.',              gold:30 },
-  venom_sack:    { id:'venom_sack',    emoji:'🫙', name:'Venom Sack',        type:'material', desc:'Toxic material.',                 gold:35 },
-  crystal_dawn:  { id:'crystal_dawn',  emoji:'💎', name:'Crystal of Dawn',   type:'quest',    desc:'The legendary crystal, restored!',gold:0 },
-
-  // Weapons
-  sword_iron:    { id:'sword_iron',    emoji:'⚔️', name:'Iron Sword',        type:'weapon',  desc:'A sturdy iron blade.',     atk:8,  gold:60  },
-  sword_shadow:  { id:'sword_shadow',  emoji:'🗡️', name:'Shadow Blade',      type:'weapon',  desc:'Carved from shadow-steel.',atk:18, gold:150 },
-  sword_light:   { id:'sword_light',   emoji:'✨', name:'Blade of Light',    type:'weapon',  desc:'Gleams with divine power.', atk:28, gold:300 },
-  sword_holy:    { id:'sword_holy',    emoji:'⚡', name:'Holy Sword',         type:'weapon',  desc:'Blessed by the gods.',     atk:24, gold:250 },
-  club_troll:    { id:'club_troll',    emoji:'🪵', name:'Troll Club',         type:'weapon',  desc:'Heavy but devastating.',   atk:14, gold:80  },
-  staff_swamp:   { id:'staff_swamp',   emoji:'🪄', name:'Swamp Staff',        type:'weapon',  desc:'Pulses with swamp magic.', atk:16, mp:15, gold:120 },
-  staff_dark:    { id:'staff_dark',    emoji:'🔮', name:'Dark Staff',         type:'weapon',  desc:'Channels dark energy.',    atk:20, mp:20, gold:180 },
-
-  // Armor
-  shield_wood:   { id:'shield_wood',   emoji:'🛡️', name:'Wooden Shield',     type:'armor',   desc:'Provides basic defense.',  def:4,  gold:40  },
-  shield_iron:   { id:'shield_iron',   emoji:'🛡️', name:'Iron Shield',       type:'armor',   desc:'Solid iron protection.',   def:10, gold:120 },
-  armor_leather: { id:'armor_leather', emoji:'🥋', name:'Leather Armor',     type:'armor',   desc:'Light and flexible.',      def:6,  hp:10, gold:70 },
-  armor_plate:   { id:'armor_plate',   emoji:'🦺', name:'Plate Armor',       type:'armor',   desc:'Heavy plate protection.',  def:18, hp:30, gold:200 },
-  ring_protection:{ id:'ring_protection',emoji:'💍',name:'Ring of Protection',type:'armor',   desc:'Magical protective ring.',  def:3,  gold:80  },
-  boots_swamp:   { id:'boots_swamp',   emoji:'👢', name:'Swamp Boots',       type:'armor',   desc:'+20% movement speed.',     def:2,  speed:1, gold:90 },
+  potion_health:   { id:'potion_health',   emoji:'🧪', name:'Health Potion',      type:'item',     desc:'Restores 50 HP.',              heal:50,  gold:25 },
+  potion_mana:     { id:'potion_mana',     emoji:'💧', name:'Mana Potion',        type:'item',     desc:'Restores 30 MP.',              mana:30,  gold:30 },
+  potion_mega:     { id:'potion_mega',     emoji:'⚗️', name:'Elixir of Life',     type:'item',     desc:'Restores all HP & MP.',        heal:999, mana:999, gold:120 },
+  herb_swift:      { id:'herb_swift',      emoji:'🌿', name:'Swift Herb',          type:'item',     desc:'Restores 25 HP.',              heal:25,  gold:15 },
+  bone_dust:       { id:'bone_dust',       emoji:'🦴', name:'Bone Dust',           type:'material', desc:'Crafting material.',                     gold:10 },
+  tooth_drake:     { id:'tooth_drake',     emoji:'🦷', name:'Drake Tooth',         type:'material', desc:'A rare crafting material.',              gold:40 },
+  ore_iron:        { id:'ore_iron',        emoji:'🔩', name:'Iron Ore',            type:'material', desc:'Can be smelted into weapons.',            gold:20 },
+  fang_croc:       { id:'fang_croc',       emoji:'🦷', name:'Crocodile Fang',     type:'material', desc:'Crafting material.',                     gold:30 },
+  venom_sack:      { id:'venom_sack',      emoji:'🫙', name:'Venom Sack',          type:'material', desc:'Toxic material.',                        gold:35 },
+  crystal_dawn:    { id:'crystal_dawn',    emoji:'💎', name:'Crystal of Dawn',     type:'quest',    desc:'The legendary crystal, restored!',        gold:0  },
+  sword_iron:      { id:'sword_iron',      emoji:'⚔️', name:'Iron Sword',          type:'weapon',   desc:'A sturdy iron blade.',         atk:8,   gold:60  },
+  sword_shadow:    { id:'sword_shadow',    emoji:'🗡️', name:'Shadow Blade',        type:'weapon',   desc:'Carved from shadow-steel.',    atk:18,  gold:150 },
+  sword_light:     { id:'sword_light',     emoji:'✨', name:'Blade of Light',      type:'weapon',   desc:'Gleams with divine power.',    atk:28,  gold:300 },
+  sword_holy:      { id:'sword_holy',      emoji:'⚡', name:'Holy Sword',           type:'weapon',   desc:'Blessed by the gods.',         atk:24,  gold:250 },
+  club_troll:      { id:'club_troll',      emoji:'🪵', name:'Troll Club',           type:'weapon',   desc:'Heavy but devastating.',       atk:14,  gold:80  },
+  staff_swamp:     { id:'staff_swamp',     emoji:'🪄', name:'Swamp Staff',          type:'weapon',   desc:'Pulses with swamp magic.',     atk:16, mp:15,  gold:120 },
+  staff_dark:      { id:'staff_dark',      emoji:'🔮', name:'Dark Staff',           type:'weapon',   desc:'Channels dark energy.',        atk:20, mp:20,  gold:180 },
+  shield_wood:     { id:'shield_wood',     emoji:'🛡️', name:'Wooden Shield',       type:'armor',    desc:'Provides basic defense.',      def:4,   gold:40  },
+  shield_iron:     { id:'shield_iron',     emoji:'🛡️', name:'Iron Shield',         type:'armor',    desc:'Solid iron protection.',       def:10,  gold:120 },
+  armor_leather:   { id:'armor_leather',   emoji:'🥋', name:'Leather Armor',       type:'armor',    desc:'Light and flexible.',          def:6,  hp:10,  gold:70  },
+  armor_plate:     { id:'armor_plate',     emoji:'🦺', name:'Plate Armor',         type:'armor',    desc:'Heavy plate protection.',      def:18, hp:30,  gold:200 },
+  ring_protection: { id:'ring_protection', emoji:'💍', name:'Ring of Protection',  type:'armor',    desc:'Magical protective ring.',     def:3,   gold:80  },
+  boots_swamp:     { id:'boots_swamp',     emoji:'👢', name:'Swamp Boots',         type:'armor',    desc:'+20% movement speed.',         def:2,  speed:1, gold:90  },
 };
 
-// ── SHOP INVENTORIES ─────────────────────────────────────────────
 const SHOPS = {
   village_shop: ['potion_health','potion_mana','herb_swift','sword_iron','shield_wood'],
 };
 
-// ── DIALOG DEFINITIONS ───────────────────────────────────────────
-// These are functions (called lazily) so they can reference game state
 function DIALOG_VILLAGE_ALDRIC() {
   const hasQ = hasQuest('main_1');
   if (!hasQ) {
@@ -1072,25 +950,19 @@ function DIALOG_VILLAGE_ALDRIC() {
   }
   return { lines:['May the light guide your path, brave hero.'], options:[] };
 }
-function DIALOG_GUARD() {
-  return { lines:["Stay sharp! Wolves have been spotted near the forest edge. Don't go in without weapons!"], options:[] };
-}
+function DIALOG_GUARD()  { return { lines:["Stay sharp! Wolves have been spotted near the forest edge. Don't go in without weapons!"], options:[] }; }
 function DIALOG_MIA() {
   if (hasFlag('quest_mia_cat')) return { lines:["Thank you for finding Whiskers! He wandered into the forest again... silly cat."], options:[] };
   return {
     lines: ["My cat Whiskers ran into the Whispering Forest! Can you find him? He's orange with a little bell."],
     options: [
-      { text:"I'll find Whiskers", fn:()=>{ acceptQuest('side_mia'); addMsg('Side Quest accepted: Mia\'s Missing Cat','msg-system'); }},
+      { text:"I'll find Whiskers", fn:()=>{ acceptQuest('side_mia'); addMsg("Side Quest accepted: Mia's Missing Cat",'msg-system'); }},
       { text:'Not right now', fn:()=>{} }
     ]
   };
 }
-function DIALOG_SAGE() {
-  return { lines:['The Shadowlord draws power from darkness itself. Seek the Crystal shards — only their light can weaken him. I sense one in the cave to the east... and another in the swamp beyond the forest.'], options:[] };
-}
-function DIALOG_SYLVA() {
-  return { lines:['This forest is teeming with danger lately. A Drake has made its lair to the southwest — powerful beast. Defeat it and the path east to the cave will open.'], options:[] };
-}
+function DIALOG_SAGE()   { return { lines:['The Shadowlord draws power from darkness itself. Seek the Crystal shards — only their light can weaken him. I sense one in the cave to the east... and another in the swamp beyond the forest.'], options:[] }; }
+function DIALOG_SYLVA()  { return { lines:['This forest is teeming with danger lately. A Drake has made its lair to the southwest — powerful beast. Defeat it and the path east to the cave will open.'], options:[] }; }
 function DIALOG_CAT() {
   if (hasQuest('side_mia')) {
     return {
@@ -1102,69 +974,56 @@ function DIALOG_CAT() {
   }
   return { lines:['Meow...'], options:[] };
 }
-function DIALOG_MINER() {
-  return { lines:["Careful down here, hero. That Troll is guarding the passage east. I've been trapped for days! Kill it and I'll owe you a fine axe."], options:[] };
-}
-function DIALOG_HERMIT() {
-  return { lines:['Hehehe... you came to the swamp, did ye? The Vine Horror guards the passage. Poison resists its attacks. The dungeon lies beyond — face the Shadowlord!'], options:[] };
-}
-function DIALOG_KNIGHT() {
-  return { lines:['I was a knight who failed to stop the Shadowlord. Now I linger here as a ghost. Use light-imbued weapons against him — regular steel barely scratches his shell. Be brave, warrior.'], options:[] };
-}
+function DIALOG_MINER()  { return { lines:["Careful down here, hero. That Troll is guarding the passage east. I've been trapped for days! Kill it and I'll owe you a fine axe."], options:[] }; }
+function DIALOG_HERMIT() { return { lines:['Hehehe... you came to the swamp, did ye? The Vine Horror guards the passage. The dungeon lies beyond — face the Shadowlord!'], options:[] }; }
+function DIALOG_KNIGHT() { return { lines:['I was a knight who failed to stop the Shadowlord. Now I linger here as a ghost. Use light-imbued weapons against him — regular steel barely scratches his shell. Be brave, warrior.'], options:[] }; }
 
-// ── QUEST DEFINITIONS ────────────────────────────────────────────
 const QUEST_DEFS = {
   main_1: {
-    id:'main_1', name:'The Shattered Crystal', type:'MAIN',
-    giver:'Elder Aldric',
-    story:'The Crystal of Dawn has been shattered by the Shadowlord. Fragments of its power are scattered across the realm. Journey through forest, cave, and swamp to reassemble it — then confront the Shadowlord in his keep.',
+    id:'main_1', name:'The Shattered Crystal', type:'MAIN', giver:'Elder Aldric',
+    story:'The Crystal of Dawn has been shattered by the Shadowlord. Journey through forest, cave, and swamp to reassemble it — then confront the Shadowlord in his keep.',
     objectives: [
-      { id:'kill_drake',   desc:'Defeat the Forest Drake',       done:false },
-      { id:'kill_troll',   desc:'Defeat the Cave Troll',          done:false },
-      { id:'kill_vine',    desc:'Defeat the Vine Horror',         done:false },
-      { id:'kill_shadow',  desc:'Defeat the Shadowlord',          done:false },
+      { id:'kill_drake',  desc:'Defeat the Forest Drake',  done:false },
+      { id:'kill_troll',  desc:'Defeat the Cave Troll',     done:false },
+      { id:'kill_vine',   desc:'Defeat the Vine Horror',    done:false },
+      { id:'kill_shadow', desc:'Defeat the Shadowlord',     done:false },
     ],
-    reward: { gold:500, xp:1000, item:'crystal_dawn' },
-    complete: false,
+    reward: { gold:500, xp:1000, item:'crystal_dawn' }, complete: false,
   },
   side_mia: {
-    id:'side_mia', name:"Mia's Missing Cat", type:'SIDE',
-    giver:'Mia',
+    id:'side_mia', name:"Mia's Missing Cat", type:'SIDE', giver:'Mia',
     story:"Mia's beloved cat Whiskers has run off into the Whispering Forest. Find the cat and bring it back safely.",
     objectives: [
-      { id:'find_cat', desc:'Find Whiskers in the forest', done:false },
-      { id:'return_cat', desc:'Return to Mia', done:false },
+      { id:'find_cat',   desc:'Find Whiskers in the forest', done:false },
+      { id:'return_cat', desc:'Return to Mia',               done:false },
     ],
-    reward: { gold:80, xp:120, item:'potion_health' },
-    complete: false,
+    reward: { gold:80, xp:120, item:'potion_health' }, complete: false,
   },
 };
 
-// ── TILE RENDER DATA ─────────────────────────────────────────────
 const TILE_DATA = {
-  [T.GRASS]:       { base:'#1e3a1e', var:'#1a3518' },
-  [T.DARK_GRASS]:  { base:'#142814', var:'#102210' },
-  [T.DIRT]:        { base:'#3a2a18', var:'#332415' },
-  [T.STONE]:       { base:'#2c2c2c', var:'#282828' },
-  [T.PATH]:        { base:'#4a3a20', var:'#443618' },
-  [T.SAND]:        { base:'#5a4a2a', var:'#504020' },
-  [T.WALL]:        { base:'#1c1c34', var:'#181828' },
-  [T.DUNGEON_WALL]:{ base:'#0c0c14', var:'#080810' },
-  [T.CAVE_WALL]:   { base:'#141414', var:'#101010' },
-  [T.WATER]:       { base:'#0a1a3a', var:'#081430' },
-  [T.DEEP_WATER]:  { base:'#060e20', var:'#040c18' },
-  [T.TREE]:        { base:'#0f2a0f', var:'#0c240c' },
+  [T.GRASS]:        { base:'#1e3a1e', var:'#1a3518' },
+  [T.DARK_GRASS]:   { base:'#142814', var:'#102210' },
+  [T.DIRT]:         { base:'#3a2a18', var:'#332415' },
+  [T.STONE]:        { base:'#2c2c2c', var:'#282828' },
+  [T.PATH]:         { base:'#4a3a20', var:'#443618' },
+  [T.SAND]:         { base:'#5a4a2a', var:'#504020' },
+  [T.WALL]:         { base:'#1c1c34', var:'#181828' },
+  [T.DUNGEON_WALL]: { base:'#0c0c14', var:'#080810' },
+  [T.CAVE_WALL]:    { base:'#141414', var:'#101010' },
+  [T.WATER]:        { base:'#0a1a3a', var:'#081430' },
+  [T.DEEP_WATER]:   { base:'#060e20', var:'#040c18' },
+  [T.TREE]:         { base:'#0f2a0f', var:'#0c240c' },
   [T.DUNGEON_FLOOR]:{ base:'#1a1a22', var:'#161620' },
-  [T.CAVE_FLOOR]:  { base:'#181818', var:'#141414' },
-  [T.BRIDGE]:      { base:'#2a1a0a', var:'#241408' },
-  [T.DOOR]:        { base:'#4a2a00', var:'#3e2200' },
-  [T.PORTAL]:      { base:'#200a3a', var:'#1a0830' },
-  [T.ALTAR]:       { base:'#2a1a3a', var:'#221430' },
-  [T.LAVA]:        { base:'#3a0a00', var:'#300800' },
-  [T.CRYSTAL]:     { base:'#1a2a3a', var:'#162230' },
+  [T.CAVE_FLOOR]:   { base:'#181818', var:'#141414' },
+  [T.BRIDGE]:       { base:'#2a1a0a', var:'#241408' },
+  [T.DOOR]:         { base:'#4a2a00', var:'#3e2200' },
+  [T.PORTAL]:       { base:'#200a3a', var:'#1a0830' },
+  [T.ALTAR]:        { base:'#2a1a3a', var:'#221430' },
+  [T.LAVA]:         { base:'#3a0a00', var:'#300800' },
+  [T.CRYSTAL]:      { base:'#1a2a3a', var:'#162230' },
 };
 
-// ── PARTICLE SYSTEM ──────────────────────────────────────────────
 class Particle {
   constructor(x,y,color,size,vx,vy,life) {
     this.x=x; this.y=y; this.color=color; this.size=size||3;
@@ -1174,13 +1033,10 @@ class Particle {
   }
   update() { this.x+=this.vx; this.y+=this.vy; this.vy+=0.12; this.life--; }
   draw(cx,cam) {
-    const a = this.life/this.maxLife;
-    cx.globalAlpha = a;
-    cx.fillStyle = this.color;
-    cx.beginPath();
-    cx.arc(this.x-cam.x, this.y-cam.y, this.size*a, 0, Math.PI*2);
-    cx.fill();
-    cx.globalAlpha = 1;
+    const a=this.life/this.maxLife;
+    cx.globalAlpha=a; cx.fillStyle=this.color;
+    cx.beginPath(); cx.arc(this.x-cam.x,this.y-cam.y,this.size*a,0,Math.PI*2); cx.fill();
+    cx.globalAlpha=1;
   }
 }
 class FloatText {
@@ -1190,276 +1046,177 @@ class FloatText {
   }
   update() { this.y+=this.vy; this.vy*=0.98; this.life--; }
   draw(cx,cam) {
-    const a = Math.min(1,this.life/40);
-    cx.globalAlpha = a;
-    cx.fillStyle = this.color;
-    cx.font = `bold ${this.size}px Crimson Text, serif`;
-    cx.textAlign = 'center'; cx.textBaseline = 'middle';
-    cx.fillText(this.text, this.x-cam.x, this.y-cam.y);
-    cx.globalAlpha = 1;
+    const a=Math.min(1,this.life/40);
+    cx.globalAlpha=a; cx.fillStyle=this.color;
+    cx.font=`bold ${this.size}px Crimson Text, serif`;
+    cx.textAlign='center'; cx.textBaseline='middle';
+    cx.fillText(this.text,this.x-cam.x,this.y-cam.y);
+    cx.globalAlpha=1;
   }
 }
 
-// ── ENTITY BASE ──────────────────────────────────────────────────
 class Entity {
-  constructor(def, mapId) {
-    Object.assign(this, def);
-    this.mapId = mapId;
-    this.wx = def.tx * TILE + TILE/2;
-    this.wy = def.ty * TILE + TILE/2;
-    this.alive = true;
+  constructor(def,mapId) {
+    Object.assign(this,def);
+    this.mapId=mapId;
+    this.wx=def.tx*TILE+TILE/2;
+    this.wy=def.ty*TILE+TILE/2;
+    this.alive=true;
   }
 }
 
 class NPC extends Entity {
-  constructor(def, mapId) {
-    super(def, mapId);
-    this.type = 'npc';
-    this.bobOff = Math.random()*Math.PI*2;
-  }
-  update(frame) { this.bob = Math.sin(frame*0.04 + this.bobOff)*3; }
-  draw(cx, cam, frame) {
-    const sx = this.wx - cam.x, sy = this.wy - cam.y + this.bob;
-    // Glow
-    cx.fillStyle = this.color || '#ffffff';
-    cx.globalAlpha = 0.15;
-    cx.beginPath(); cx.arc(sx,sy,22,0,Math.PI*2); cx.fill();
-    cx.globalAlpha = 1;
-    // Shadow
+  constructor(def,mapId) { super(def,mapId); this.type='npc'; this.bobOff=Math.random()*Math.PI*2; }
+  update(frame) { this.bob=Math.sin(frame*0.04+this.bobOff)*3; }
+  draw(cx,cam,frame) {
+    const sx=this.wx-cam.x, sy=this.wy-cam.y+(this.bob||0);
+    cx.fillStyle=this.color||'#ffffff'; cx.globalAlpha=0.15;
+    cx.beginPath(); cx.arc(sx,sy,22,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     cx.fillStyle='rgba(0,0,0,0.3)';
     cx.beginPath(); cx.ellipse(sx,sy+16,14,5,0,0,Math.PI*2); cx.fill();
-    // Emoji
     cx.font='28px serif'; cx.textAlign='center'; cx.textBaseline='middle';
-    cx.fillText(this.emoji, sx, sy);
-    // Name tag
-    cx.font='11px Cinzel, serif'; cx.fillStyle = this.color||'#fff';
-    cx.fillText(this.name, sx, sy-26);
-    // Interaction hint
-    const dist = Math.hypot(G.player.wx - this.wx, G.player.wy - this.wy);
-    if (dist < 60) {
-      cx.font='10px Press Start 2P, monospace'; cx.fillStyle='rgba(255,255,255,0.5)';
-      cx.fillText('[E]', sx, sy-38);
-    }
+    cx.fillText(this.emoji,sx,sy);
+    cx.font='11px Cinzel, serif'; cx.fillStyle=this.color||'#fff';
+    cx.fillText(this.name,sx,sy-26);
+    const dist=Math.hypot(G.player.wx-this.wx,G.player.wy-this.wy);
+    if(dist<60){ cx.font='10px Press Start 2P, monospace'; cx.fillStyle='rgba(255,255,255,0.5)'; cx.fillText('[E]',sx,sy-38); }
   }
 }
 
 class Enemy extends Entity {
-  constructor(def, mapId) {
-    super(def, mapId);
-    this.type = 'enemy';
-    this.maxHp = def.hp;
-    this.atkCooldown = 0;
-    this.state = 'idle'; // idle, chase, attack
-    this.wanderTimer = Math.random()*120;
-    this.moveX = 0; this.moveY = 0;
-    this.spawnX = this.wx; this.spawnY = this.wy;
-    this.hitFlash = 0;
-    this.respawnTimer = 0;
+  constructor(def,mapId) {
+    super(def,mapId);
+    this.type='enemy'; this.maxHp=def.hp; this.atkCooldown=0;
+    this.state='idle'; this.wanderTimer=Math.random()*120;
+    this.moveX=0; this.moveY=0;
+    this.spawnX=this.wx; this.spawnY=this.wy;
+    this.hitFlash=0;
   }
-
-  update(map, player, parts, floats, frame) {
-    if (!this.alive) return;
-    if (this.atkCooldown > 0) this.atkCooldown--;
-
-    const dist = Math.hypot(player.wx - this.wx, player.wy - this.wy);
-    const range = this.isBoss ? 200 : 140;
-
-    if (dist < range) {
-      this.state = 'chase';
-      // Chase player
-      const ddx = player.wx - this.wx, ddy = player.wy - this.wy;
-      const len = Math.hypot(ddx,ddy)||1;
-      const spd = this.isBoss ? 1.8 : 1.4;
-      const nx = this.wx + (ddx/len)*spd;
-      const ny = this.wy + (ddy/len)*spd;
-      if (canWalkAt(map, nx, this.wy)) this.wx = nx;
-      if (canWalkAt(map, this.wx, ny)) this.wy = ny;
-
-      // Attack
-      if (dist < 44 && this.atkCooldown <= 0) {
-        this.atkCooldown = this.isBoss ? 70 : 90;
-        const dmg = Math.max(1, this.atk - (G.player.def||0) + Math.floor(Math.random()*4)-2);
-        G.player.hp = Math.max(0, G.player.hp - dmg);
-        G.player.invincible = 50;
-        addMsg(`${this.name} attacks for ${dmg} damage!`, 'msg-combat');
-        floats.push(new FloatText(`-${dmg}`, player.wx, player.wy-24, '#e74c3c'));
+  update(map,player,parts,floats,frame) {
+    if(!this.alive) return;
+    if(this.atkCooldown>0) this.atkCooldown--;
+    const dist=Math.hypot(player.wx-this.wx,player.wy-this.wy);
+    const range=this.isBoss?200:140;
+    if(dist<range) {
+      this.state='chase';
+      const ddx=player.wx-this.wx, ddy=player.wy-this.wy;
+      const len=Math.hypot(ddx,ddy)||1;
+      const spd=this.isBoss?1.8:1.4;
+      const nx=this.wx+(ddx/len)*spd, ny=this.wy+(ddy/len)*spd;
+      if(canWalkAt(map,nx,this.wy)) this.wx=nx;
+      if(canWalkAt(map,this.wx,ny)) this.wy=ny;
+      if(dist<44&&this.atkCooldown<=0) {
+        this.atkCooldown=this.isBoss?70:90;
+        const dmg=Math.max(1,this.atk-(G.player.def||0)+Math.floor(Math.random()*4)-2);
+        G.player.hp=Math.max(0,G.player.hp-dmg);
+        G.player.invincible=50;
+        addMsg(`${this.name} attacks for ${dmg} damage!`,'msg-combat');
+        floats.push(new FloatText(`-${dmg}`,player.wx,player.wy-24,'#e74c3c'));
         flashScreen('red');
         updateBars();
-        if (G.player.hp <= 0) triggerDeath();
+        if(G.player.hp<=0) triggerDeath();
       }
     } else {
-      this.state = 'idle';
+      this.state='idle';
       this.wanderTimer--;
-      if (this.wanderTimer <= 0) {
-        this.wanderTimer = 80+Math.random()*120;
-        const ang = Math.random()*Math.PI*2;
-        this.moveX = Math.cos(ang)*0.8;
-        this.moveY = Math.sin(ang)*0.8;
+      if(this.wanderTimer<=0) {
+        this.wanderTimer=80+Math.random()*120;
+        const ang=Math.random()*Math.PI*2;
+        this.moveX=Math.cos(ang)*0.8; this.moveY=Math.sin(ang)*0.8;
       }
-      const nx2 = this.wx + this.moveX, ny2 = this.wy + this.moveY;
-      if (canWalkAt(map,nx2,this.wy)) this.wx=nx2; else this.moveX*=-1;
-      if (canWalkAt(map,this.wx,ny2)) this.wy=ny2; else this.moveY*=-1;
+      const nx2=this.wx+this.moveX, ny2=this.wy+this.moveY;
+      if(canWalkAt(map,nx2,this.wy)) this.wx=nx2; else this.moveX*=-1;
+      if(canWalkAt(map,this.wx,ny2)) this.wy=ny2; else this.moveY*=-1;
     }
-    if (this.hitFlash>0) this.hitFlash--;
+    if(this.hitFlash>0) this.hitFlash--;
   }
-
-  draw(cx, cam, frame) {
-    if (!this.alive) return;
-    const sx = this.wx - cam.x, sy = this.wy - cam.y;
-
-    // Boss pulsing aura
-    if (this.isBoss) {
-      cx.globalAlpha = 0.12 + 0.06*Math.sin(frame*0.08);
-      cx.fillStyle = '#ff4040';
-      cx.beginPath(); cx.arc(sx,sy,32,0,Math.PI*2); cx.fill();
-      cx.globalAlpha = 1;
+  draw(cx,cam,frame) {
+    if(!this.alive) return;
+    const sx=this.wx-cam.x, sy=this.wy-cam.y;
+    if(this.isBoss) {
+      cx.globalAlpha=0.12+0.06*Math.sin(frame*0.08); cx.fillStyle='#ff4040';
+      cx.beginPath(); cx.arc(sx,sy,32,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     }
-
-    // Shadow
     cx.fillStyle='rgba(0,0,0,0.35)';
     cx.beginPath(); cx.ellipse(sx,sy+16,this.isBoss?18:13,5,0,0,Math.PI*2); cx.fill();
-
-    // Hit flash
-    if (this.hitFlash>0) {
+    if(this.hitFlash>0) {
       cx.globalAlpha=0.6; cx.fillStyle='#fff';
-      cx.beginPath(); cx.arc(sx,sy,this.isBoss?26:20,0,Math.PI*2); cx.fill();
-      cx.globalAlpha=1;
+      cx.beginPath(); cx.arc(sx,sy,this.isBoss?26:20,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     }
-
-    // Emoji
-    cx.font = `${this.isBoss?38:28}px serif`;
-    cx.textAlign='center'; cx.textBaseline='middle';
-    cx.fillText(this.emoji, sx, sy);
-
-    // HP bar
-    const bw = this.isBoss?60:40, bh = this.isBoss?8:5;
-    cx.fillStyle='rgba(0,0,0,0.6)';
-    cx.fillRect(sx-bw/2-1,sy-28-1,bw+2,bh+2);
-    cx.fillStyle='#300';
-    cx.fillRect(sx-bw/2,sy-28,bw,bh);
-    const hpPct = this.hp/this.maxHp;
-    cx.fillStyle = hpPct>0.5?'#27ae60':hpPct>0.25?'#f39c12':'#e74c3c';
+    cx.font=`${this.isBoss?38:28}px serif`; cx.textAlign='center'; cx.textBaseline='middle';
+    cx.fillText(this.emoji,sx,sy);
+    const bw=this.isBoss?60:40, bh=this.isBoss?8:5;
+    cx.fillStyle='rgba(0,0,0,0.6)'; cx.fillRect(sx-bw/2-1,sy-28-1,bw+2,bh+2);
+    cx.fillStyle='#300'; cx.fillRect(sx-bw/2,sy-28,bw,bh);
+    const hpPct=this.hp/this.maxHp;
+    cx.fillStyle=hpPct>0.5?'#27ae60':hpPct>0.25?'#f39c12':'#e74c3c';
     cx.fillRect(sx-bw/2,sy-28,bw*hpPct,bh);
-
-    // Name (boss)
-    if (this.isBoss) {
-      cx.font='12px Cinzel, serif'; cx.fillStyle='#ff8080';
-      cx.fillText(this.bossName||this.name, sx, sy-40);
-    }
-
-    // Aggro indicator
-    if (this.state==='chase') {
-      cx.font='11px serif'; cx.fillStyle='#ff4040';
-      cx.fillText('!', sx, sy-52);
-    }
+    if(this.isBoss) { cx.font='12px Cinzel, serif'; cx.fillStyle='#ff8080'; cx.fillText(this.bossName||this.name,sx,sy-40); }
+    if(this.state==='chase') { cx.font='11px serif'; cx.fillStyle='#ff4040'; cx.fillText('!',sx,sy-52); }
   }
-
-  takeDamage(dmg, floats, parts) {
-    this.hp -= dmg;
-    this.hitFlash = 8;
-    floats.push(new FloatText(`-${dmg}`, this.wx, this.wy-30, '#ffd700'));
-    for (let i=0;i<6;i++) parts.push(new Particle(this.wx, this.wy, '#ff8040', 3));
-    if (this.hp <= 0) {
-      this.alive = false;
-      return true; // died
-    }
+  takeDamage(dmg,floats,parts) {
+    this.hp-=dmg; this.hitFlash=8;
+    floats.push(new FloatText(`-${dmg}`,this.wx,this.wy-30,'#ffd700'));
+    for(let i=0;i<6;i++) parts.push(new Particle(this.wx,this.wy,'#ff8040',3));
+    if(this.hp<=0) { this.alive=false; return true; }
     return false;
   }
 }
 
 class Chest extends Entity {
-  constructor(def, mapId) {
-    super(def, mapId);
-    this.type = 'chest';
-    this.opened = false;
-  }
-  draw(cx, cam) {
-    if (!this.alive) return;
-    const sx = this.wx-cam.x, sy = this.wy-cam.y;
-    if (!this.opened) {
-      // Glow
+  constructor(def,mapId) { super(def,mapId); this.type='chest'; this.opened=false; }
+  draw(cx,cam) {
+    if(!this.alive) return;
+    const sx=this.wx-cam.x, sy=this.wy-cam.y;
+    if(!this.opened) {
       cx.globalAlpha=0.15; cx.fillStyle='#ffd700';
-      cx.beginPath(); cx.arc(sx,sy,24,0,Math.PI*2); cx.fill();
-      cx.globalAlpha=1;
+      cx.beginPath(); cx.arc(sx,sy,24,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     }
     cx.font='26px serif'; cx.textAlign='center'; cx.textBaseline='middle';
-    cx.fillText(this.opened ? '📦' : '🎁', sx, sy);
-    if (!this.opened) {
-      const dist = Math.hypot(G.player.wx-this.wx, G.player.wy-this.wy);
-      if (dist < 60) {
-        cx.font='10px Press Start 2P, monospace'; cx.fillStyle='rgba(255,215,0,0.7)';
-        cx.fillText('[E]', sx, sy-28);
-      }
+    cx.fillText(this.opened?'📦':'🎁',sx,sy);
+    if(!this.opened) {
+      const dist=Math.hypot(G.player.wx-this.wx,G.player.wy-this.wy);
+      if(dist<60) { cx.font='10px Press Start 2P, monospace'; cx.fillStyle='rgba(255,215,0,0.7)'; cx.fillText('[E]',sx,sy-28); }
     }
   }
 }
 
-// ── PLAYER ───────────────────────────────────────────────────────
 class Player {
   constructor() {
-    this.wx = 12*TILE+TILE/2;
-    this.wy = 8*TILE+TILE/2;
-    this.hp = 100; this.maxHp = 100;
-    this.mp = 40;  this.maxMp = 40;
-    this.atk = 10; this.def = 2; this.speed = 3;
-    this.xp = 0; this.xpNext = 100; this.level = 1;
-    this.gold = 50;
-    this.dir = 'down';
-    this.invincible = 0;
-    this.atkCooldown = 0;
-    this.frame = 0;
-    this.equipped = { weapon: null, armor: null };
-    this.checkpointMap = 'village';
-    this.checkpointX = 12*TILE+TILE/2;
-    this.checkpointY = 8*TILE+TILE/2;
+    this.wx=12*TILE+TILE/2; this.wy=8*TILE+TILE/2;
+    this.hp=100; this.maxHp=100;
+    this.mp=40;  this.maxMp=40;
+    this.atk=10; this.def=2; this.speed=3;
+    this.xp=0; this.xpNext=100; this.level=1;
+    this.gold=50; this.dir='down';
+    this.invincible=0; this.atkCooldown=0; this.frame=0;
+    this.equipped={ weapon:null, armor:null };
+    this.checkpointMap='village';
+    this.checkpointX=12*TILE+TILE/2;
+    this.checkpointY=8*TILE+TILE/2;
   }
-
-  get totalAtk() {
-    let a = this.atk;
-    if (this.equipped.weapon) a += (ITEMS[this.equipped.weapon]?.atk||0);
-    return a;
-  }
-  get totalDef() {
-    let d = this.def;
-    if (this.equipped.armor) d += (ITEMS[this.equipped.armor]?.def||0);
-    return d;
-  }
-  get totalSpeed() {
-    let s = this.speed;
-    if (this.equipped.armor) s += (ITEMS[this.equipped.armor]?.speed||0);
-    return s;
-  }
-
-  draw(cx, cam, frame) {
-    const sx = this.wx-cam.x, sy = this.wy-cam.y;
-    const bob = Math.sin(frame*0.2)*1.5;
-
-    // Shadow
+  get totalAtk()   { return this.atk+(ITEMS[this.equipped.weapon]?.atk||0); }
+  get totalDef()   { return this.def+(ITEMS[this.equipped.armor]?.def||0); }
+  get totalSpeed() { return this.speed+(ITEMS[this.equipped.armor]?.speed||0); }
+  draw(cx,cam,frame) {
+    const sx=this.wx-cam.x, sy=this.wy-cam.y;
+    const bob=Math.sin(frame*0.2)*1.5;
     cx.fillStyle='rgba(0,0,0,0.4)';
     cx.beginPath(); cx.ellipse(sx,sy+15,13,5,0,0,Math.PI*2); cx.fill();
-
-    // Invincibility blink
-    if (this.invincible>0 && Math.floor(this.invincible/6)%2===0) {
+    if(this.invincible>0&&Math.floor(this.invincible/6)%2===0) {
       cx.globalAlpha=0.3; cx.fillStyle='#fff';
-      cx.beginPath(); cx.arc(sx,sy,20,0,Math.PI*2); cx.fill();
-      cx.globalAlpha=1;
+      cx.beginPath(); cx.arc(sx,sy,20,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     }
-
-    // Player emoji
     cx.font='30px serif'; cx.textAlign='center'; cx.textBaseline='middle';
-    cx.fillText('🧙‍♂️', sx, sy+bob);
-
-    // Attack arc
-    if (this.atkCooldown>20) {
+    cx.fillText('🧙‍♂️',sx,sy+bob);
+    if(this.atkCooldown>20) {
       const dirs={right:[1,0],left:[-1,0],down:[0,1],up:[0,-1]}[this.dir];
       cx.globalAlpha=0.35; cx.fillStyle='#ffd700';
-      cx.beginPath(); cx.arc(sx+dirs[0]*30,sy+dirs[1]*30,18,0,Math.PI*2); cx.fill();
-      cx.globalAlpha=1;
+      cx.beginPath(); cx.arc(sx+dirs[0]*30,sy+dirs[1]*30,18,0,Math.PI*2); cx.fill(); cx.globalAlpha=1;
     }
   }
 }
 
-// ── TILE HELPERS ─────────────────────────────────────────────────
 function parseMapRaw(raw) {
   const charMap={'1':T.GRASS,'2':T.DIRT,'3':T.STONE,'4':T.WALL,'5':T.WATER,
     '6':T.TREE,'7':T.CHEST,'8':T.DOOR,'9':T.DEEP_WATER,'0':T.VOID,
@@ -1467,17 +1224,12 @@ function parseMapRaw(raw) {
     'P':T.PATH,'S':T.SAND,'L':T.LAVA,'R':T.BRIDGE,'A':T.ALTAR,'X':T.CRYSTAL};
   return raw.map(row=>{
     const arr=[];
-    for(let i=0;i<MAP_COLS;i++){
-      arr.push(charMap[row[i]]??T.VOID);
-    }
+    for(let i=0;i<MAP_COLS;i++) arr.push(charMap[row[i]]??T.VOID);
     return arr;
   });
 }
 
-function getTile(map,tx,ty) {
-  if(!map||!map[ty]||map[ty][tx]==null) return T.VOID;
-  return map[ty][tx];
-}
+function getTile(map,tx,ty) { if(!map||!map[ty]||map[ty][tx]==null) return T.VOID; return map[ty][tx]; }
 function canWalkAt(map,wx,wy) {
   const r=12;
   const pts=[[wx-r,wy-r],[wx+r,wy-r],[wx-r,wy+r],[wx+r,wy+r]];
@@ -1488,204 +1240,129 @@ function canWalkAt(map,wx,wy) {
   return true;
 }
 
-// ── GAME STATE ────────────────────────────────────────────────────
 function createGameState() {
   return {
-    running: false,
-    frame: 0,
-    currentMapId: 'village',
-    mapData: {},       // parsed tile arrays
-    entities: {},      // mapId -> Entity[]
-    player: null,
-    camera: {x:0,y:0},
-    particles: [],
-    floatTexts: [],
-    inventory: [],
-    hotbar: [null,null,null,null,null],
-    hotbarCounts: [0,0,0,0,0],
-    quests: {},
-    flags: {},
-    killedEnemies: {},
-    openedChests: {},
-    selectedHotbarSlot: 0,
-    keys: {},
-    dialogQueue: [],
-    dialogOpen: false,
-    invOpen: false,
-    questOpen: false,
-    shopOpen: false,
-    shopId: null,
-    transitioning: false,
-    activeInvTab: 'all',
-    respawnPending: false,
-    playTime: 0,
-    kills: 0,
+    running:false, frame:0,
+    currentMapId:'village', mapData:{}, entities:{},
+    player:null, camera:{x:0,y:0},
+    particles:[], floatTexts:[],
+    inventory:[], hotbar:[null,null,null,null,null], hotbarCounts:[0,0,0,0,0],
+    quests:{}, flags:{},
+    selectedHotbarSlot:0, keys:{},
+    dialogOpen:false, invOpen:false, questOpen:false, shopOpen:false, shopId:null,
+    transitioning:false, activeInvTab:'all',
+    respawnPending:false, playTime:0, kills:0,
   };
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
 function initGame() {
-  G = createGameState();
-  G.running = true;
-
-  // Parse maps
+  G=createGameState();
+  G.running=true;
   for(const[id,def] of Object.entries(MAP_DEFS)){
-    G.mapData[id] = parseMapRaw(def.raw);
-    G.entities[id] = [];
+    G.mapData[id]=parseMapRaw(def.raw);
+    G.entities[id]=[];
   }
-
-  // Spawn all entities
   for(const[id,def] of Object.entries(MAP_DEFS)){
     def.npcs?.forEach(n=>G.entities[id].push(new NPC(n,id)));
     def.enemies?.forEach(e=>G.entities[id].push(new Enemy(e,id)));
     def.chests?.forEach(c=>G.entities[id].push(new Chest(c,id)));
   }
-
-  G.player = new Player();
-
-  // Starting items
-  addToInventory('potion_health', 3);
-  addToInventory('potion_mana', 1);
+  G.player=new Player();
+  addToInventory('potion_health',3);
+  addToInventory('potion_mana',1);
   setHotbar(0,'potion_health',3);
   setHotbar(1,'potion_mana',1);
-
-  G.quests = {};
-  G.flags = {};
-
-  updateBars();
-  updateQuestTracker();
-  updateHotbarUI();
-  updateMinimap();
-
-  showAreaTransition(MAP_DEFS.village.name, 'Your journey begins...');
+  G.quests={}; G.flags={};
+  updateBars(); updateQuestTracker(); updateHotbarUI(); updateMinimap();
+  showAreaTransition(MAP_DEFS.village.name,'Your journey begins...');
   addMsg('Welcome to Echoes of the Lost Realm!','msg-system');
   addMsg('Speak with Elder Aldric to begin your quest.','msg-info');
   addMsg('WASD=Move  E=Interact/Attack  I=Inventory  Q=Quests','msg-info');
 }
 
-// ── MAP MANAGEMENT ────────────────────────────────────────────────
-function currentMap() { return G.mapData[G.currentMapId]; }
-function currentEntities() { return G.entities[G.currentMapId]; }
-function currentMapDef() { return MAP_DEFS[G.currentMapId]; }
+function currentMap()     { return G.mapData[G.currentMapId]; }
+function currentEntities(){ return G.entities[G.currentMapId]; }
+function currentMapDef()  { return MAP_DEFS[G.currentMapId]; }
 
-// ── INVENTORY HELPERS ─────────────────────────────────────────────
-function addToInventory(itemId, count=1) {
-  // Stack same items
-  const existing = G.inventory.find(s=>s.id===itemId && s.count!=null);
-  if (existing) { existing.count+=count; return; }
-  const item = ITEMS[itemId];
-  if (!item) return;
-  if (item.type==='item' || item.type==='material') {
-    G.inventory.push({id:itemId, count});
-  } else {
-    G.inventory.push({id:itemId, count:null});
-  }
+function addToInventory(itemId,count=1) {
+  const existing=G.inventory.find(s=>s.id===itemId&&s.count!=null);
+  if(existing){ existing.count+=count; return; }
+  const item=ITEMS[itemId];
+  if(!item) return;
+  if(item.type==='item'||item.type==='material') G.inventory.push({id:itemId,count});
+  else G.inventory.push({id:itemId,count:null});
 }
 
-function setHotbar(slot, itemId, count) {
-  G.hotbar[slot] = itemId;
-  G.hotbarCounts[slot] = count;
-  updateHotbarUI();
+function setHotbar(slot,itemId,count) {
+  G.hotbar[slot]=itemId; G.hotbarCounts[slot]=count; updateHotbarUI();
 }
 
 function updateHotbarUI() {
   for(let i=0;i<5;i++){
-    const id = G.hotbar[i];
-    const em = document.getElementById(`hi-${i}`);
-    const ct = document.getElementById(`hc-${i}`);
-    const sl = document.getElementById(`hs-${i}`);
-    if(id && ITEMS[id]){
-      em.textContent = ITEMS[id].emoji;
-      em.className = '';
-      ct.textContent = G.hotbarCounts[i] > 1 ? G.hotbarCounts[i] : '';
+    const id=G.hotbar[i];
+    const em=document.getElementById(`hi-${i}`);
+    const ct=document.getElementById(`hc-${i}`);
+    const sl=document.getElementById(`hs-${i}`);
+    if(!em||!ct||!sl) continue;
+    if(id&&ITEMS[id]){
+      em.textContent=ITEMS[id].emoji; em.className='';
+      ct.textContent=G.hotbarCounts[i]>1?G.hotbarCounts[i]:'';
     } else {
-      em.textContent = '—'; em.className='hslot-empty'; ct.textContent='';
+      em.textContent='—'; em.className='hslot-empty'; ct.textContent='';
     }
-    sl.className = 'hslot' + (i===G.selectedHotbarSlot?' active':'');
+    sl.className='hslot'+(i===G.selectedHotbarSlot?' active':'');
   }
 }
 
 function useHotbar(slot) {
-  G.selectedHotbarSlot = slot;
-  updateHotbarUI();
-  const id = G.hotbar[slot];
-  if(!id||!G.hotbarCounts[slot]) { addMsg('Nothing in that slot!','msg-info'); return; }
-  const item = ITEMS[id];
+  G.selectedHotbarSlot=slot; updateHotbarUI();
+  const id=G.hotbar[slot];
+  if(!id||!G.hotbarCounts[slot]){ addMsg('Nothing in that slot!','msg-info'); return; }
+  const item=ITEMS[id];
   if(!item) return;
-
-  if(item.heal) {
-    const h=Math.min(item.heal, G.player.maxHp-G.player.hp);
-    G.player.hp = Math.min(G.player.maxHp, G.player.hp+item.heal);
-    G.floatTexts.push(new FloatText(`+${h}HP`,G.player.wx,G.player.wy-30,'#2ecc71'));
-    addMsg(`Used ${item.name}. +${h}HP`,'msg-heal');
-  }
-  if(item.mana) {
-    const m=Math.min(item.mana,G.player.maxMp-G.player.mp);
-    G.player.mp=Math.min(G.player.maxMp,G.player.mp+item.mana);
-    G.floatTexts.push(new FloatText(`+${m}MP`,G.player.wx,G.player.wy-40,'#3498db'));
-    addMsg(`Used ${item.name}. +${m}MP`,'msg-heal');
-  }
-
+  if(item.heal){ const h=Math.min(item.heal,G.player.maxHp-G.player.hp); G.player.hp=Math.min(G.player.maxHp,G.player.hp+item.heal); G.floatTexts.push(new FloatText(`+${h}HP`,G.player.wx,G.player.wy-30,'#2ecc71')); addMsg(`Used ${item.name}. +${h}HP`,'msg-heal'); }
+  if(item.mana){ const m=Math.min(item.mana,G.player.maxMp-G.player.mp); G.player.mp=Math.min(G.player.maxMp,G.player.mp+item.mana); G.floatTexts.push(new FloatText(`+${m}MP`,G.player.wx,G.player.wy-40,'#3498db')); addMsg(`Used ${item.name}. +${m}MP`,'msg-heal'); }
   G.hotbarCounts[slot]--;
   if(G.hotbarCounts[slot]<=0){ G.hotbar[slot]=null; G.hotbarCounts[slot]=0; }
-
-  // Sync inventory
-  const inv = G.inventory.find(s=>s.id===id);
+  const inv=G.inventory.find(s=>s.id===id);
   if(inv){ inv.count--; if(inv.count<=0) G.inventory.splice(G.inventory.indexOf(inv),1); }
-
-  updateHotbarUI();
-  updateBars();
+  updateHotbarUI(); updateBars();
 }
 
-// ── QUEST HELPERS ─────────────────────────────────────────────────
-function acceptQuest(id) {
-  if(G.quests[id]) return;
-  const def = JSON.parse(JSON.stringify(QUEST_DEFS[id]));
-  G.quests[id] = def;
-  updateQuestTracker();
-}
-function hasQuest(id) { return !!G.quests[id]; }
-function hasFlag(f) { return !!G.flags[f]; }
-function setFlag(f) { G.flags[f]=true; }
-function completeQuestObjective(qId, objId) {
-  const q = G.quests[qId];
-  if(!q) return;
-  const obj = q.objectives.find(o=>o.id===objId);
-  if(obj) { obj.done=true; updateQuestTracker(); }
+function acceptQuest(id)  { if(G.quests[id]) return; G.quests[id]=JSON.parse(JSON.stringify(QUEST_DEFS[id])); updateQuestTracker(); }
+function hasQuest(id)     { return !!G.quests[id]; }
+function hasFlag(f)       { return !!G.flags[f]; }
+function setFlag(f)       { G.flags[f]=true; }
+function completeQuestObjective(qId,objId) {
+  const q=G.quests[qId]; if(!q) return;
+  const obj=q.objectives.find(o=>o.id===objId);
+  if(obj){ obj.done=true; updateQuestTracker(); }
 }
 function checkQuestCompletion(qId) {
-  const q = G.quests[qId];
-  if(!q||q.complete) return false;
+  const q=G.quests[qId]; if(!q||q.complete) return false;
   if(q.objectives.every(o=>o.done)){
     q.complete=true;
     const r=QUEST_DEFS[qId].reward;
     if(r.gold){ G.player.gold+=r.gold; addMsg(`Quest complete! +${r.gold}G`,'msg-system'); }
-    if(r.xp){ gainXP(r.xp); }
+    if(r.xp) gainXP(r.xp);
     if(r.item){ addToInventory(r.item); addMsg(`Received: ${ITEMS[r.item]?.name}`,'msg-pickup'); }
     addMsg(`Quest complete: ${q.name}`,'msg-system');
-    updateQuestTracker();
-    updateHUD();
-    return true;
+    updateQuestTracker(); updateHUD(); return true;
   }
   return false;
 }
 
 function updateQuestTracker() {
-  const div = document.getElementById('qt-list');
+  const div=document.getElementById('qt-list');
   div.innerHTML='';
-  const active = Object.values(G.quests).filter(q=>!q.complete);
+  const active=Object.values(G.quests).filter(q=>!q.complete);
   if(!active.length){ div.innerHTML='<div style="font-size:12px;color:#444;padding:4px">No active quests</div>'; return; }
   for(const q of active.slice(0,3)){
-    const nextObj = q.objectives.find(o=>!o.done);
-    div.innerHTML+=`<div class="qt-quest">
-      <div class="qt-qname">${q.name}</div>
-      <div class="qt-qobj">${nextObj?nextObj.desc:'All done — report back!'}</div>
-      <div class="qt-qprog">${q.type}</div>
-    </div>`;
+    const nextObj=q.objectives.find(o=>!o.done);
+    div.innerHTML+=`<div class="qt-quest"><div class="qt-qname">${q.name}</div><div class="qt-qobj">${nextObj?nextObj.desc:'All done — report back!'}</div><div class="qt-qprog">${q.type}</div></div>`;
   }
 }
 
-// ── HUD UPDATES ───────────────────────────────────────────────────
 function updateBars() {
   const p=G.player;
   document.getElementById('hp-fill').style.width=(p.hp/p.maxHp*100)+'%';
@@ -1703,144 +1380,79 @@ function updateHUD() {
   document.getElementById('hud-mapname').textContent=currentMapDef()?.name||'';
 }
 
-// ── XP / LEVEL UP ─────────────────────────────────────────────────
 function gainXP(amount) {
-  G.player.xp += amount;
+  G.player.xp+=amount;
   addMsg(`+${amount} XP`,'msg-pickup');
   G.floatTexts.push(new FloatText(`+${amount}XP`,G.player.wx,G.player.wy-50,'#f1c40f',16));
   while(G.player.xp>=G.player.xpNext) checkLevelUp();
   updateHUD();
 }
-
 function checkLevelUp() {
   const p=G.player;
-  p.xp -= p.xpNext;
-  p.level++;
-  p.xpNext = Math.floor(p.xpNext*1.6);
-  const hpGain=20, mpGain=10, atkGain=3, defGain=1;
-  p.maxHp+=hpGain; p.hp=p.maxHp;
-  p.maxMp+=mpGain; p.mp=p.maxMp;
-  p.atk+=atkGain; p.def+=defGain;
-  showLevelUp(p.level, {hp:hpGain,mp:mpGain,atk:atkGain,def:defGain});
+  p.xp-=p.xpNext; p.level++; p.xpNext=Math.floor(p.xpNext*1.6);
+  const hpGain=20,mpGain=10,atkGain=3,defGain=1;
+  p.maxHp+=hpGain; p.hp=p.maxHp; p.maxMp+=mpGain; p.mp=p.maxMp; p.atk+=atkGain; p.def+=defGain;
+  showLevelUp(p.level,{hp:hpGain,mp:mpGain,atk:atkGain,def:defGain});
   addMsg(`LEVEL UP! Now Level ${p.level}!`,'msg-system');
   for(let i=0;i<25;i++) G.particles.push(new Particle(p.wx,p.wy,'#f1c40f',4));
   updateBars();
 }
-
-function showLevelUp(level, gains) {
-  const popup = document.getElementById('levelup-popup');
+function showLevelUp(level,gains) {
+  const popup=document.getElementById('levelup-popup');
   document.getElementById('lu-level-num').textContent=level;
   document.getElementById('lu-stats').innerHTML=`+${gains.hp} Max HP &nbsp; +${gains.mp} Max MP<br>+${gains.atk} ATK &nbsp; +${gains.def} DEF`;
   popup.classList.add('show');
   setTimeout(()=>popup.classList.remove('show'),2800);
 }
 
-// ── ENEMY DEATH & LOOT ────────────────────────────────────────────
 function onEnemyDeath(enemy) {
   G.kills++;
-  const goldGain = enemy.gold + Math.floor(Math.random()*10);
-  G.player.gold += goldGain;
-  gainXP(enemy.xp);
+  const goldGain=enemy.gold+Math.floor(Math.random()*10);
+  G.player.gold+=goldGain; gainXP(enemy.xp);
   addMsg(`Defeated ${enemy.name}! +${enemy.xp}XP +${goldGain}G`,'msg-system');
   G.floatTexts.push(new FloatText(`+${goldGain}G`,enemy.wx,enemy.wy-50,'#f1c40f'));
-
-  // Drop loot
-  enemy.drops?.forEach(itemId=>{
-    if(Math.random()<0.7){
-      addToInventory(itemId);
-      addMsg(`Dropped: ${ITEMS[itemId]?.name}`,'msg-pickup');
-    }
-  });
-
-  // Quest triggers
+  enemy.drops?.forEach(itemId=>{ if(Math.random()<0.7){ addToInventory(itemId); addMsg(`Dropped: ${ITEMS[itemId]?.name}`,'msg-pickup'); }});
   if(enemy.isBoss) {
-    const def = currentMapDef();
+    const def=currentMapDef();
     if(def.bossFlag) setFlag(def.bossFlag);
-
-    // Main quest objectives
-    const bossObjectives = {
-      'Forest Drake':'kill_drake',
-      'Cave Troll':'kill_troll',
-      'Vine Horror':'kill_vine',
-      'THE SHADOWLORD':'kill_shadow',
-    };
-    const obj = bossObjectives[enemy.name];
-    if(obj && G.quests['main_1']) {
-      completeQuestObjective('main_1', obj);
-      checkQuestCompletion('main_1');
-    }
-
-    // Unlock next area
+    const bossObjectives={'Forest Drake':'kill_drake','Cave Troll':'kill_troll','Vine Horror':'kill_vine','THE SHADOWLORD':'kill_shadow'};
+    const obj=bossObjectives[enemy.name];
+    if(obj&&G.quests['main_1']){ completeQuestObjective('main_1',obj); checkQuestCompletion('main_1'); }
     setFlag('forest_cleared');
-    addMsg(`⭐ Boss defeated! A new path has opened.`,'msg-system');
-
-    if(enemy.isFinalBoss) {
-      setTimeout(()=>triggerVictory(),2000);
-    }
+    addMsg('⭐ Boss defeated! A new path has opened.','msg-system');
+    if(enemy.isFinalBoss) setTimeout(()=>triggerVictory(),2000);
   }
-
-  // Cat quest return
-  if(G.flags['quest_mia_cat'] && G.currentMapId==='village') {
-    const mia = currentEntities().find(e=>e.type==='npc'&&e.name==='Mia');
-    if(mia && !G.quests['side_mia']?.complete){
-      completeQuestObjective('side_mia','return_cat');
-      checkQuestCompletion('side_mia');
-    }
+  if(G.flags['quest_mia_cat']&&G.currentMapId==='village'){
+    if(!G.quests['side_mia']?.complete){ completeQuestObjective('side_mia','return_cat'); checkQuestCompletion('side_mia'); }
   }
-
   updateHUD();
 }
 
-// ── INTERACT ─────────────────────────────────────────────────────
 function interact() {
   if(G.dialogOpen||G.invOpen||G.questOpen||G.shopOpen) return;
-  const p=G.player;
-  const r=56;
-  let closest=null, closestDist=r;
-
+  const p=G.player; const r=56; let closest=null, closestDist=r;
   for(const e of currentEntities()){
     if(!e.alive) continue;
     const d=Math.hypot(p.wx-e.wx,p.wy-e.wy);
     if(d<closestDist){ closest=e; closestDist=d; }
   }
-
   if(closest){
     if(closest.type==='npc'){
       if(closest.shop){ openShop(closest.shop); return; }
-      if(closest.dialog){
-        const dlgFn=closest.dialog;
-        if(typeof dlgFn==='function'){
-          const dlg=dlgFn();
-          openDialog(closest.emoji, closest.name, dlg);
-        }
-      }
+      if(closest.dialog){ const dlg=closest.dialog(); openDialog(closest.emoji,closest.name,dlg); }
       return;
     }
-    if(closest.type==='enemy'){
-      attackEnemy(closest);
-      return;
-    }
-    if(closest.type==='chest'&&!closest.opened){
-      openChest(closest);
-      return;
-    }
+    if(closest.type==='enemy'){ attackEnemy(closest); return; }
+    if(closest.type==='chest'&&!closest.opened){ openChest(closest); return; }
   }
-
-  // Check portal
   const ptx=Math.floor(p.wx/TILE), pty=Math.floor(p.wy/TILE);
   const def=currentMapDef();
   for(const port of (def.portals||[])){
-    if(Math.abs(ptx-port.tx)<=1 && Math.abs(pty-port.ty)<=1){
-      if(port.reqFlag && !hasFlag(port.reqFlag)){
-        addMsg(`The path is blocked. (Requires: ${port.reqFlag.replace(/_/g,' ')})`,'msg-info');
-        return;
-      }
-      travelTo(port.toMap, port.toX, port.toY);
-      return;
+    if(Math.abs(ptx-port.tx)<=1&&Math.abs(pty-port.ty)<=1){
+      if(port.reqFlag&&!hasFlag(port.reqFlag)){ addMsg(`The path is blocked. (Requires: ${port.reqFlag.replace(/_/g,' ')})`,'msg-info'); return; }
+      travelTo(port.toMap,port.toX,port.toY); return;
     }
   }
-
-  // Swing weapon (no target)
   if(p.atkCooldown<=0){
     p.atkCooldown=25;
     const dirs={right:[1,0],left:[-1,0],down:[0,1],up:[0,-1]}[p.dir];
@@ -1850,9 +1462,9 @@ function interact() {
 
 function attackEnemy(enemy) {
   if(G.player.atkCooldown>0) return;
-  G.player.atkCooldown = 28;
-  const dmg = Math.max(1, G.player.totalAtk + Math.floor(Math.random()*6) - Math.floor(enemy.atk*0.1));
-  const died = enemy.takeDamage(dmg, G.floatTexts, G.particles);
+  G.player.atkCooldown=28;
+  const dmg=Math.max(1,G.player.totalAtk+Math.floor(Math.random()*6)-Math.floor(enemy.atk*0.1));
+  const died=enemy.takeDamage(dmg,G.floatTexts,G.particles);
   addMsg(`Hit ${enemy.name} for ${dmg} damage!`,'msg-combat');
   if(died) onEnemyDeath(enemy);
 }
@@ -1868,41 +1480,27 @@ function openChest(chest) {
   } else if(l.type==='item'){
     addToInventory(l.id,l.count||1);
     addMsg(`Found: ${ITEMS[l.id]?.name} x${l.count||1}`,'msg-pickup');
-    // Sync hotbar if item type
     const item=ITEMS[l.id];
-    if(item&&(item.heal||item.mana)){
-      for(let s=0;s<5;s++){ if(!G.hotbar[s]){setHotbar(s,l.id,l.count||1);break;} }
-    }
+    if(item&&(item.heal||item.mana)){ for(let s=0;s<5;s++){ if(!G.hotbar[s]){setHotbar(s,l.id,l.count||1);break;} } }
     for(let i=0;i<10;i++) G.particles.push(new Particle(chest.wx,chest.wy,'#c0a0ff',4));
   }
   updateHUD();
 }
 
-// ── TRAVEL BETWEEN MAPS ───────────────────────────────────────────
-function travelTo(mapId, tx, ty) {
+function travelTo(mapId,tx,ty) {
   if(G.transitioning) return;
   G.transitioning=true;
   const el=document.getElementById('area-transition');
   el.classList.add('show');
   setTimeout(()=>{
-    G.currentMapId=mapId;
-    G.player.wx=tx*TILE+TILE/2;
-    G.player.wy=ty*TILE+TILE/2;
-    // Checkpoint
+    G.currentMapId=mapId; G.player.wx=tx*TILE+TILE/2; G.player.wy=ty*TILE+TILE/2;
     const def=MAP_DEFS[mapId];
-    if(def.checkpoint){
-      G.player.checkpointMap=mapId;
-      G.player.checkpointX=def.checkpoint.tx*TILE+TILE/2;
-      G.player.checkpointY=def.checkpoint.ty*TILE+TILE/2;
-    }
+    if(def.checkpoint){ G.player.checkpointMap=mapId; G.player.checkpointX=def.checkpoint.tx*TILE+TILE/2; G.player.checkpointY=def.checkpoint.ty*TILE+TILE/2; }
     updateMinimap();
-    const nameEl=document.getElementById('area-name-text');
-    const subEl=document.getElementById('area-name-sub');
-    nameEl.textContent=def.name;
-    subEl.textContent=def.ambience;
+    document.getElementById('area-name-text').textContent=def.name;
+    document.getElementById('area-name-sub').textContent=def.ambience;
     document.getElementById('area-name-big').classList.add('show');
-    updateHUD();
-    addMsg(`Entered: ${def.name}`,'msg-info');
+    updateHUD(); addMsg(`Entered: ${def.name}`,'msg-info');
     setTimeout(()=>{
       document.getElementById('area-name-big').classList.remove('show');
       setTimeout(()=>{ el.classList.remove('show'); G.transitioning=false; },500);
@@ -1910,32 +1508,23 @@ function travelTo(mapId, tx, ty) {
   },500);
 }
 
-function showAreaTransition(name, sub) {
+function showAreaTransition(name,sub) {
   const el=document.getElementById('area-transition');
   el.classList.add('show');
   document.getElementById('area-name-text').textContent=name;
   document.getElementById('area-name-sub').textContent=sub;
   document.getElementById('area-name-big').classList.add('show');
-  setTimeout(()=>{
-    document.getElementById('area-name-big').classList.remove('show');
-    setTimeout(()=>el.classList.remove('show'),500);
-  },2000);
+  setTimeout(()=>{ document.getElementById('area-name-big').classList.remove('show'); setTimeout(()=>el.classList.remove('show'),500); },2000);
 }
 
-// ── DIALOG SYSTEM ─────────────────────────────────────────────────
-let dialogLines=[], dialogLineIdx=0, pendingOptions=[];
-
-function openDialog(portrait, name, dlgObj) {
-  G.dialogOpen=true;
-  dialogLines=dlgObj.lines||[];
-  dialogLineIdx=0;
-  pendingOptions=dlgObj.options||[];
+let dialogLines=[],dialogLineIdx=0,pendingOptions=[];
+function openDialog(portrait,name,dlgObj) {
+  G.dialogOpen=true; dialogLines=dlgObj.lines||[]; dialogLineIdx=0; pendingOptions=dlgObj.options||[];
   document.getElementById('dlg-portrait').textContent=portrait;
   document.getElementById('dlg-name').textContent=name;
   document.getElementById('dialog-overlay').classList.add('open');
   showDialogLine();
 }
-
 function showDialogLine(){
   if(dialogLineIdx<dialogLines.length){
     document.getElementById('dlg-text').textContent=dialogLines[dialogLineIdx];
@@ -1943,119 +1532,69 @@ function showDialogLine(){
     document.getElementById('dlg-continue').style.display='block';
     dialogLineIdx++;
   } else {
-    // Show options or auto-close
     document.getElementById('dlg-continue').style.display='none';
     if(pendingOptions.length>0){
       const opts=document.getElementById('dlg-options');
       opts.innerHTML='';
       pendingOptions.forEach(opt=>{
         const btn=document.createElement('button');
-        btn.className='dlg-opt';
-        btn.textContent=opt.text;
+        btn.className='dlg-opt'; btn.textContent=opt.text;
         btn.onclick=()=>{ closeDialog(); opt.fn&&opt.fn(); };
         opts.appendChild(btn);
       });
-    } else {
-      closeDialog();
-    }
+    } else { closeDialog(); }
   }
 }
+function closeDialog(){ G.dialogOpen=false; document.getElementById('dialog-overlay').classList.remove('open'); }
 
-function closeDialog(){
-  G.dialogOpen=false;
-  document.getElementById('dialog-overlay').classList.remove('open');
-}
-
-// ── INVENTORY ─────────────────────────────────────────────────────
-function openInventory(){
-  G.invOpen=true;
-  document.getElementById('inv-panel').classList.add('open');
-  renderInventory();
-}
-function closeInventory(){
-  G.invOpen=false;
-  document.getElementById('inv-panel').classList.remove('open');
-}
+function openInventory(){ G.invOpen=true; document.getElementById('inv-panel').classList.add('open'); renderInventory(); }
+function closeInventory(){ G.invOpen=false; document.getElementById('inv-panel').classList.remove('open'); }
 function switchInvTab(tab){
   G.activeInvTab=tab;
   document.querySelectorAll('.inv-tab').forEach(el=>{
-    el.classList.toggle('active', el.textContent.toLowerCase()===tab||
+    el.classList.toggle('active',
       (tab==='all'&&el.textContent==='All')||(tab==='weapon'&&el.textContent==='Weapons')||
       (tab==='armor'&&el.textContent==='Armor')||(tab==='item'&&el.textContent==='Items'));
   });
   renderInventory();
 }
-
 function renderInventory(){
-  const grid=document.getElementById('inv-grid');
-  grid.innerHTML='';
-  const items=G.inventory.filter(s=>{
-    if(G.activeInvTab==='all') return true;
-    return ITEMS[s.id]?.type===G.activeInvTab;
-  });
+  const grid=document.getElementById('inv-grid'); grid.innerHTML='';
+  const items=G.inventory.filter(s=>G.activeInvTab==='all'||ITEMS[s.id]?.type===G.activeInvTab);
   for(let i=0;i<21;i++){
-    const slot=document.createElement('div');
-    slot.className='inv-slot';
+    const slot=document.createElement('div'); slot.className='inv-slot';
     const stack=items[i];
     if(stack){
-      const item=ITEMS[stack.id];
-      slot.classList.add('filled');
+      const item=ITEMS[stack.id]; slot.classList.add('filled');
       if(G.player.equipped.weapon===stack.id||G.player.equipped.armor===stack.id) slot.classList.add('equipped');
       slot.textContent=item?.emoji||'?';
-      if(stack.count>1){
-        const ct=document.createElement('span');
-        ct.className='inv-slot-count'; ct.textContent=stack.count;
-        slot.appendChild(ct);
-      }
-      if(G.player.equipped.weapon===stack.id||G.player.equipped.armor===stack.id){
-        const eq=document.createElement('span');
-        eq.className='inv-slot-equip'; eq.textContent='E';
-        slot.appendChild(eq);
-      }
+      if(stack.count>1){ const ct=document.createElement('span'); ct.className='inv-slot-count'; ct.textContent=stack.count; slot.appendChild(ct); }
+      if(G.player.equipped.weapon===stack.id||G.player.equipped.armor===stack.id){ const eq=document.createElement('span'); eq.className='inv-slot-equip'; eq.textContent='E'; slot.appendChild(eq); }
       slot.onclick=()=>selectInvItem(stack,items,i);
     }
     grid.appendChild(slot);
   }
-
-  // Equip display
-  const ed=document.getElementById('equip-display');
-  ed.innerHTML='';
-  const wSlot=document.createElement('div');
-  wSlot.className='inv-slot';
-  wSlot.style.width='48px';
-  const w=G.player.equipped.weapon;
-  wSlot.textContent=w?ITEMS[w]?.emoji:'⚔️';
-  wSlot.style.opacity=w?'1':'0.3';
-  wSlot.title=w?ITEMS[w]?.name:'No Weapon';
-  ed.appendChild(wSlot);
-  const aSlot=document.createElement('div');
-  aSlot.className='inv-slot';
-  aSlot.style.width='48px';
-  const a=G.player.equipped.armor;
-  aSlot.textContent=a?ITEMS[a]?.emoji:'🛡️';
-  aSlot.style.opacity=a?'1':'0.3';
-  aSlot.title=a?ITEMS[a]?.name:'No Armor';
-  ed.appendChild(aSlot);
+  const ed=document.getElementById('equip-display'); ed.innerHTML='';
+  const wSlot=document.createElement('div'); wSlot.className='inv-slot'; wSlot.style.width='48px';
+  const w=G.player.equipped.weapon; wSlot.textContent=w?ITEMS[w]?.emoji:'⚔️'; wSlot.style.opacity=w?'1':'0.3'; ed.appendChild(wSlot);
+  const aSlot=document.createElement('div'); aSlot.className='inv-slot'; aSlot.style.width='48px';
+  const a=G.player.equipped.armor; aSlot.textContent=a?ITEMS[a]?.emoji:'🛡️'; aSlot.style.opacity=a?'1':'0.3'; ed.appendChild(aSlot);
 }
-
-function selectInvItem(stack, items, idx){
-  const item=ITEMS[stack.id];
-  if(!item) return;
+function selectInvItem(stack,items,idx){
+  const item=ITEMS[stack.id]; if(!item) return;
   const det=document.getElementById('inv-detail');
   let statsHtml='';
-  if(item.atk) statsHtml+=`<div class="inv-stat-row">⚔ ATK +${item.atk}</div>`;
-  if(item.def) statsHtml+=`<div class="inv-stat-row">🛡 DEF +${item.def}</div>`;
-  if(item.heal) statsHtml+=`<div class="inv-stat-row">❤ Heals ${item.heal} HP</div>`;
-  if(item.mana) statsHtml+=`<div class="inv-stat-row">💧 Restores ${item.mana} MP</div>`;
-  if(item.hp) statsHtml+=`<div class="inv-stat-row">❤ +${item.hp} Max HP</div>`;
-  if(item.mp) statsHtml+=`<div class="inv-stat-row">💧 +${item.mp} Max MP</div>`;
+  if(item.atk)   statsHtml+=`<div class="inv-stat-row">⚔ ATK +${item.atk}</div>`;
+  if(item.def)   statsHtml+=`<div class="inv-stat-row">🛡 DEF +${item.def}</div>`;
+  if(item.heal)  statsHtml+=`<div class="inv-stat-row">❤ Heals ${item.heal} HP</div>`;
+  if(item.mana)  statsHtml+=`<div class="inv-stat-row">💧 Restores ${item.mana} MP</div>`;
+  if(item.hp)    statsHtml+=`<div class="inv-stat-row">❤ +${item.hp} Max HP</div>`;
+  if(item.mp)    statsHtml+=`<div class="inv-stat-row">💧 +${item.mp} Max MP</div>`;
   if(item.speed) statsHtml+=`<div class="inv-stat-row">👟 +${item.speed} Speed</div>`;
-  if(item.gold) statsHtml+=`<div class="inv-stat-row">💰 Worth ${item.gold}G</div>`;
-
-  const actionLabel = item.type==='weapon'?(G.player.equipped.weapon===item.id?'Unequip':'Equip'):
+  if(item.gold)  statsHtml+=`<div class="inv-stat-row">💰 Worth ${item.gold}G</div>`;
+  const actionLabel=item.type==='weapon'?(G.player.equipped.weapon===item.id?'Unequip':'Equip'):
     item.type==='armor'?(G.player.equipped.armor===item.id?'Unequip':'Equip'):
     (item.heal||item.mana)?'Use':'—';
-
   det.innerHTML=`
     <div class="inv-item-icon">${item.emoji}</div>
     <div class="inv-item-name">${item.name}</div>
@@ -2065,21 +1604,17 @@ function selectInvItem(stack, items, idx){
     ${actionLabel!=='—'?`<button class="inv-use-btn" onclick="useInventoryItem('${stack.id}');renderInventory();">${actionLabel} ${item.emoji}</button>`:''}
   `;
 }
-
 function useInventoryItem(itemId){
-  const item=ITEMS[itemId];
-  if(!item) return;
-  if(item.type==='weapon'){
-    G.player.equipped.weapon = G.player.equipped.weapon===itemId?null:itemId;
-    addMsg(G.player.equipped.weapon?`Equipped ${item.name}`:`Unequipped ${item.name}`,'msg-pickup');
-  } else if(item.type==='armor'){
-    G.player.equipped.armor = G.player.equipped.armor===itemId?null:itemId;
+  const item=ITEMS[itemId]; if(!item) return;
+  if(item.type==='weapon'){ G.player.equipped.weapon=G.player.equipped.weapon===itemId?null:itemId; addMsg(G.player.equipped.weapon?`Equipped ${item.name}`:`Unequipped ${item.name}`,'msg-pickup'); }
+  else if(item.type==='armor'){
+    G.player.equipped.armor=G.player.equipped.armor===itemId?null:itemId;
     addMsg(G.player.equipped.armor?`Equipped ${item.name}`:`Unequipped ${item.name}`,'msg-pickup');
     if(item.hp&&G.player.equipped.armor){ G.player.maxHp+=item.hp; G.player.hp+=item.hp; }
     if(item.mp&&G.player.equipped.armor){ G.player.maxMp+=item.mp; G.player.mp+=item.mp; }
   } else if(item.heal||item.mana){
-    if(item.heal) { G.player.hp=Math.min(G.player.maxHp,G.player.hp+item.heal); }
-    if(item.mana) { G.player.mp=Math.min(G.player.maxMp,G.player.mp+item.mana); }
+    if(item.heal) G.player.hp=Math.min(G.player.maxHp,G.player.hp+item.heal);
+    if(item.mana) G.player.mp=Math.min(G.player.maxMp,G.player.mp+item.mana);
     const stack=G.inventory.find(s=>s.id===itemId);
     if(stack){ stack.count--; if(stack.count<=0) G.inventory.splice(G.inventory.indexOf(stack),1); }
     addMsg(`Used ${item.name}`,'msg-heal');
@@ -2087,23 +1622,11 @@ function useInventoryItem(itemId){
   updateBars();
 }
 
-// ── QUEST LOG ─────────────────────────────────────────────────────
-function openQuestLog(){
-  G.questOpen=true;
-  document.getElementById('quest-panel').classList.add('open');
-  renderQuestLog();
-}
-function closeQuestLog(){
-  G.questOpen=false;
-  document.getElementById('quest-panel').classList.remove('open');
-}
+function openQuestLog(){ G.questOpen=true; document.getElementById('quest-panel').classList.add('open'); renderQuestLog(); }
+function closeQuestLog(){ G.questOpen=false; document.getElementById('quest-panel').classList.remove('open'); }
 function renderQuestLog(){
-  const list=document.getElementById('quest-list-ui');
-  list.innerHTML='';
-  if(!Object.keys(G.quests).length){
-    list.innerHTML='<div style="padding:16px;color:var(--text-dim);font-size:14px">No quests yet.<br><br>Talk to villagers!</div>';
-    return;
-  }
+  const list=document.getElementById('quest-list-ui'); list.innerHTML='';
+  if(!Object.keys(G.quests).length){ list.innerHTML='<div style="padding:16px;color:var(--text-dim);font-size:14px">No quests yet.<br><br>Talk to villagers!</div>'; return; }
   for(const q of Object.values(G.quests)){
     const el=document.createElement('div');
     el.className='quest-entry'+(q.complete?' complete':'');
@@ -2113,10 +1636,7 @@ function renderQuestLog(){
   }
 }
 function showQuestDetail(qId){
-  document.querySelectorAll('.quest-entry').forEach(el=>el.classList.remove('selected'));
-  event?.target?.closest('.quest-entry')?.classList.add('selected');
-  const q=G.quests[qId];
-  const def=QUEST_DEFS[qId];
+  const q=G.quests[qId]; const def=QUEST_DEFS[qId];
   const det=document.getElementById('quest-detail-ui');
   const objs=q.objectives.map(o=>`<div class="qd-obj ${o.done?'done':''}">${o.desc}${o.done?' ✓':''}</div>`).join('');
   const r=def.reward;
@@ -2124,58 +1644,41 @@ function showQuestDetail(qId){
     <div class="qd-title">${q.name}</div>
     <div class="qd-giver">Given by: ${q.giver} · ${q.type} QUEST</div>
     <div class="qd-story">${def.story}</div>
-    <div class="qd-obj-title">OBJECTIVES</div>
-    ${objs}
+    <div class="qd-obj-title">OBJECTIVES</div>${objs}
     <div class="qd-reward-title">REWARDS</div>
     <div class="qd-reward">${r.gold?`💰 ${r.gold}G &nbsp; `:''}${r.xp?`⭐ ${r.xp}XP &nbsp; `:''}${r.item?`${ITEMS[r.item]?.emoji} ${ITEMS[r.item]?.name}`:''}</div>
   `;
 }
 
-// ── SHOP ──────────────────────────────────────────────────────────
 function openShop(shopId){
-  G.shopOpen=true;
-  G.shopId=shopId;
+  G.shopOpen=true; G.shopId=shopId;
   document.getElementById('shop-panel').classList.add('open');
   document.getElementById('shop-gold-display').textContent=`💰 ${G.player.gold}G`;
-  const grid=document.getElementById('shop-items-grid');
-  grid.innerHTML='';
+  const grid=document.getElementById('shop-items-grid'); grid.innerHTML='';
   const shopItems=SHOPS[shopId]||[];
   shopItems.forEach(itemId=>{
-    const item=ITEMS[itemId];
-    if(!item) return;
+    const item=ITEMS[itemId]; if(!item) return;
     const affordable=G.player.gold>=item.gold;
     const div=document.createElement('div');
     div.className='shop-item'+(affordable?'':' cant-afford');
-    div.innerHTML=`<div class="shop-item-icon">${item.emoji}</div>
-      <div class="shop-item-name">${item.name}</div>
-      <div class="shop-item-desc">${item.desc}</div>
-      <div class="shop-item-price">💰 ${item.gold}G</div>`;
+    div.innerHTML=`<div class="shop-item-icon">${item.emoji}</div><div class="shop-item-name">${item.name}</div><div class="shop-item-desc">${item.desc}</div><div class="shop-item-price">💰 ${item.gold}G</div>`;
     div.onclick=()=>buyItem(itemId);
     grid.appendChild(div);
   });
 }
-function closeShop(){
-  G.shopOpen=false;
-  document.getElementById('shop-panel').classList.remove('open');
-}
+function closeShop(){ G.shopOpen=false; document.getElementById('shop-panel').classList.remove('open'); }
 function buyItem(itemId){
   const item=ITEMS[itemId];
   if(!item||G.player.gold<item.gold){ addMsg('Not enough gold!','msg-combat'); return; }
-  G.player.gold-=item.gold;
-  addToInventory(itemId,1);
-  if(item.heal||item.mana){
-    for(let s=0;s<5;s++){ if(!G.hotbar[s]){setHotbar(s,itemId,1);break;} }
-  }
+  G.player.gold-=item.gold; addToInventory(itemId,1);
+  if(item.heal||item.mana){ for(let s=0;s<5;s++){ if(!G.hotbar[s]){setHotbar(s,itemId,1);break;} } }
   addMsg(`Bought: ${item.name} for ${item.gold}G`,'msg-pickup');
-  updateHUD();
-  openShop(G.shopId); // refresh
+  updateHUD(); openShop(G.shopId);
 }
 
-// ── DEATH & RESPAWN ───────────────────────────────────────────────
 function triggerDeath(){
   if(G.respawnPending) return;
-  G.respawnPending=true;
-  G.running=false;
+  G.respawnPending=true; G.running=false;
   const screen=document.getElementById('end-screen');
   document.getElementById('end-icon').textContent='💀';
   document.getElementById('end-title').style.color='#e74c3c';
@@ -2183,29 +1686,14 @@ function triggerDeath(){
   document.getElementById('end-sub').textContent='Returning to last checkpoint...';
   document.getElementById('end-stats').innerHTML=`Level ${G.player.level} · ${G.kills} enemies slain · ${G.player.gold}G`;
   screen.classList.add('show');
-  setTimeout(()=>{
-    screen.classList.remove('show');
-    respawnPlayer();
-    G.running=true;
-    G.respawnPending=false;
-  },3000);
+  setTimeout(()=>{ screen.classList.remove('show'); respawnPlayer(); G.running=true; G.respawnPending=false; },3000);
 }
-
 function respawnPlayer(){
-  const p=G.player;
-  p.hp=Math.floor(p.maxHp*0.6);
-  p.mp=p.maxMp;
-  p.invincible=120;
-  G.currentMapId=p.checkpointMap;
-  p.wx=p.checkpointX;
-  p.wy=p.checkpointY;
-  updateBars();
-  updateHUD();
-  addMsg('Respawned at checkpoint. Some HP lost.','msg-system');
+  const p=G.player; p.hp=Math.floor(p.maxHp*0.6); p.mp=p.maxMp; p.invincible=120;
+  G.currentMapId=p.checkpointMap; p.wx=p.checkpointX; p.wy=p.checkpointY;
+  updateBars(); updateHUD(); addMsg('Respawned at checkpoint. Some HP lost.','msg-system');
   showAreaTransition(currentMapDef().name,'Respawned at checkpoint');
 }
-
-// ── VICTORY ───────────────────────────────────────────────────────
 function triggerVictory(){
   G.running=false;
   const screen=document.getElementById('end-screen');
@@ -2213,43 +1701,31 @@ function triggerVictory(){
   document.getElementById('end-title').style.color='#f1c40f';
   document.getElementById('end-title').textContent='REALM RESTORED!';
   document.getElementById('end-sub').textContent='The Crystal of Dawn shines once more.';
-  document.getElementById('end-stats').innerHTML=
-    `Level ${G.player.level} · ${G.kills} enemies slain<br>${G.player.gold}G collected · ${Math.floor(G.playTime/60)} minutes of adventure`;
+  document.getElementById('end-stats').innerHTML=`Level ${G.player.level} · ${G.kills} enemies slain<br>${G.player.gold}G collected · ${Math.floor(G.playTime/60)} minutes of adventure`;
   screen.classList.add('show');
 }
+function restartGame(){ document.getElementById('end-screen').classList.remove('show'); initGame(); }
 
-function restartGame(){
-  document.getElementById('end-screen').classList.remove('show');
-  initGame();
-}
-
-// ── FLASH EFFECT ──────────────────────────────────────────────────
 function flashScreen(color){
   const el=document.getElementById('combat-flash');
-  el.className=color;
-  el.style.opacity='1';
+  el.className=color; el.style.opacity='1';
   setTimeout(()=>el.style.opacity='0',120);
 }
 
-// ── MESSAGE LOG ───────────────────────────────────────────────────
 const MAX_MSGS=5;
 function addMsg(text,cls='msg-info'){
   const log=document.getElementById('msg-log');
   while(log.children.length>=MAX_MSGS) log.removeChild(log.lastChild);
   const el=document.createElement('div');
-  el.className=`msg-entry ${cls}`;
-  el.textContent=text;
+  el.className=`msg-entry ${cls}`; el.textContent=text;
   log.prepend(el);
   setTimeout(()=>el.remove&&el.remove(),5000);
 }
 
-// ── MINIMAP ───────────────────────────────────────────────────────
 function updateMinimap(){
-  const map=currentMap();
-  if(!map) return;
+  const map=currentMap(); if(!map) return;
   const tw=100/MAP_COLS, th=100/MAP_ROWS;
   mmCtx.fillStyle='#000'; mmCtx.fillRect(0,0,100,100);
-
   const colors={
     [T.GRASS]:'#1e3a1e',[T.DARK_GRASS]:'#142814',[T.TREE]:'#0c240c',
     [T.DIRT]:'#3a2a18',[T.PATH]:'#4a3a20',[T.STONE]:'#2c2c2c',
@@ -2259,248 +1735,143 @@ function updateMinimap(){
     [T.PORTAL]:'#4a1a9a',[T.ALTAR]:'#3a1a5a',[T.LAVA]:'#4a1400',
     [T.SAND]:'#5a4a2a',[T.BRIDGE]:'#2a1a0a',
   };
-  for(let r=0;r<MAP_ROWS;r++){
-    for(let c=0;c<MAP_COLS;c++){
-      const t=getTile(map,c,r);
-      mmCtx.fillStyle=colors[t]||'#050508';
-      mmCtx.fillRect(c*tw,r*th,tw+0.5,th+0.5);
-    }
+  for(let r=0;r<MAP_ROWS;r++) for(let c=0;c<MAP_COLS;c++){
+    const t=getTile(map,c,r); mmCtx.fillStyle=colors[t]||'#050508'; mmCtx.fillRect(c*tw,r*th,tw+0.5,th+0.5);
   }
-  // Enemies
   for(const e of currentEntities()){
     if(!e.alive||e.type!=='enemy') continue;
     mmCtx.fillStyle=e.isBoss?'#ff0000':'#ff6060';
     mmCtx.fillRect((e.wx/TILE)*tw-1,(e.wy/TILE)*th-1,3,3);
   }
-  // Player
   mmCtx.fillStyle='#f1c40f';
-  mmCtx.beginPath();
-  mmCtx.arc((G.player.wx/TILE)*tw,(G.player.wy/TILE)*th,3,0,Math.PI*2);
-  mmCtx.fill();
-  // Portals
+  mmCtx.beginPath(); mmCtx.arc((G.player.wx/TILE)*tw,(G.player.wy/TILE)*th,3,0,Math.PI*2); mmCtx.fill();
   for(const port of (currentMapDef().portals||[])){
-    mmCtx.fillStyle='#c060ff';
-    mmCtx.fillRect(port.tx*tw,port.ty*th,tw*2,th*2);
+    mmCtx.fillStyle='#c060ff'; mmCtx.fillRect(port.tx*tw,port.ty*th,tw*2,th*2);
   }
   document.getElementById('mm-label').textContent=currentMapDef()?.name||'';
 }
 
-// ── TILE RENDERER ─────────────────────────────────────────────────
-function drawTile(tile, sx, sy, col, row) {
-  const td = TILE_DATA[tile];
-  const base = td ? ((col+row)%2===0?td.base:td.var) : '#050508';
-  ctx.fillStyle = base;
-  ctx.fillRect(sx,sy,TILE,TILE);
-
-  // Extra details
+function drawTile(tile,sx,sy,col,row) {
+  const td=TILE_DATA[tile];
+  const base=td?((col+row)%2===0?td.base:td.var):'#050508';
+  ctx.fillStyle=base; ctx.fillRect(sx,sy,TILE,TILE);
   switch(tile){
     case T.GRASS:
-      if((col*7+row*3)%9<2){
-        ctx.fillStyle='rgba(0,80,0,0.25)';
-        ctx.fillRect(sx+6,sy+8,3,4); ctx.fillRect(sx+24,sy+18,3,4);
-      }
-      break;
+      if((col*7+row*3)%9<2){ ctx.fillStyle='rgba(0,80,0,0.25)'; ctx.fillRect(sx+6,sy+8,3,4); ctx.fillRect(sx+24,sy+18,3,4); } break;
     case T.TREE:
-      ctx.font='32px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('🌲',sx+TILE/2,sy+TILE/2); break;
+      ctx.font='32px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('🌲',sx+TILE/2,sy+TILE/2); break;
     case T.WALL: case T.DUNGEON_WALL: case T.CAVE_WALL:
-      ctx.strokeStyle='rgba(255,255,255,0.05)';
-      ctx.strokeRect(sx+1,sy+1,TILE-2,TILE-2); break;
+      ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.strokeRect(sx+1,sy+1,TILE-2,TILE-2); break;
     case T.WATER: case T.DEEP_WATER: {
       const w=0.3+0.15*Math.sin(G.frame*0.04+col*0.6+row*0.4);
-      ctx.fillStyle=`rgba(20,60,160,${w})`;
-      ctx.fillRect(sx,sy+TILE*0.4,TILE,TILE*0.6); break;
+      ctx.fillStyle=`rgba(20,60,160,${w})`; ctx.fillRect(sx,sy+TILE*0.4,TILE,TILE*0.6); break;
     }
     case T.STONE:
-      ctx.strokeStyle='rgba(100,100,100,0.2)';
-      ctx.strokeRect(sx+4,sy+4,TILE-8,TILE-8); break;
+      ctx.strokeStyle='rgba(100,100,100,0.2)'; ctx.strokeRect(sx+4,sy+4,TILE-8,TILE-8); break;
     case T.DOOR:
       ctx.fillStyle='#6a4a20'; ctx.fillRect(sx+8,sy+4,TILE-16,TILE-4);
-      ctx.fillStyle='#8a6a30'; ctx.beginPath();
-      ctx.arc(sx+TILE/2,sy+TILE/2,4,0,Math.PI*2); ctx.fill(); break;
+      ctx.fillStyle='#8a6a30'; ctx.beginPath(); ctx.arc(sx+TILE/2,sy+TILE/2,4,0,Math.PI*2); ctx.fill(); break;
     case T.PORTAL: {
       const gr=ctx.createRadialGradient(sx+TILE/2,sy+TILE/2,2,sx+TILE/2,sy+TILE/2,TILE/2);
       const a=0.3+0.2*Math.sin(G.frame*0.06);
-      gr.addColorStop(0,`rgba(140,80,220,${a+0.2})`);
-      gr.addColorStop(1,'rgba(60,20,100,0)');
+      gr.addColorStop(0,`rgba(140,80,220,${a+0.2})`); gr.addColorStop(1,'rgba(60,20,100,0)');
       ctx.fillStyle=gr; ctx.fillRect(sx,sy,TILE,TILE);
-      ctx.font='20px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('🌀',sx+TILE/2,sy+TILE/2); break;
+      ctx.font='20px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('🌀',sx+TILE/2,sy+TILE/2); break;
     }
     case T.ALTAR:
       ctx.fillStyle='rgba(140,80,200,0.15)'; ctx.fillRect(sx,sy,TILE,TILE);
-      ctx.font='22px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('⛩️',sx+TILE/2,sy+TILE/2); break;
+      ctx.font='22px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('⛩️',sx+TILE/2,sy+TILE/2); break;
     case T.LAVA: {
       const lv=0.3+0.25*Math.sin(G.frame*0.05+col-row);
-      ctx.fillStyle=`rgba(220,${Math.floor(lv*70)},0,0.7)`;
-      ctx.fillRect(sx,sy,TILE,TILE); break;
+      ctx.fillStyle=`rgba(220,${Math.floor(lv*70)},0,0.7)`; ctx.fillRect(sx,sy,TILE,TILE); break;
     }
     case T.BRIDGE:
-      ctx.fillStyle='rgba(120,80,20,0.5)';
-      ctx.fillRect(sx+4,sy,TILE-8,TILE);
-      ctx.strokeStyle='rgba(160,100,30,0.4)';
-      ctx.strokeRect(sx+4,sy,TILE-8,TILE); break;
+      ctx.fillStyle='rgba(120,80,20,0.5)'; ctx.fillRect(sx+4,sy,TILE-8,TILE);
+      ctx.strokeStyle='rgba(160,100,30,0.4)'; ctx.strokeRect(sx+4,sy,TILE-8,TILE); break;
     case T.PATH:
-      ctx.strokeStyle='rgba(100,80,40,0.15)';
-      ctx.beginPath(); ctx.moveTo(sx,sy+TILE/2); ctx.lineTo(sx+TILE,sy+TILE/2);
-      ctx.stroke(); break;
+      ctx.strokeStyle='rgba(100,80,40,0.15)'; ctx.beginPath(); ctx.moveTo(sx,sy+TILE/2); ctx.lineTo(sx+TILE,sy+TILE/2); ctx.stroke(); break;
     case T.SAND:
-      if((col*11+row*7)%13<3){
-        ctx.fillStyle='rgba(180,140,60,0.2)';
-        ctx.beginPath(); ctx.arc(sx+14,sy+12,3,0,Math.PI*2); ctx.fill();
-      } break;
+      if((col*11+row*7)%13<3){ ctx.fillStyle='rgba(180,140,60,0.2)'; ctx.beginPath(); ctx.arc(sx+14,sy+12,3,0,Math.PI*2); ctx.fill(); } break;
   }
 }
 
-// ── MAIN RENDER LOOP ──────────────────────────────────────────────
 function drawFrame() {
-  ctx.fillStyle='#000';
-  ctx.fillRect(0,0,VW,VH);
-
-  const map=currentMap();
-  const cam=G.camera;
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,VW,VH);
+  const map=currentMap(); const cam=G.camera;
   const sc=Math.floor(cam.x/TILE), ec=Math.ceil((cam.x+VW)/TILE);
   const sr=Math.floor(cam.y/TILE), er=Math.ceil((cam.y+VH)/TILE);
-
-  for(let r=sr;r<=er;r++){
-    for(let c=sc;c<=ec;c++){
-      drawTile(getTile(map,c,r), c*TILE-cam.x, r*TILE-cam.y, c, r);
-    }
-  }
-
-  // Portal arrows
+  for(let r=sr;r<=er;r++) for(let c=sc;c<=ec;c++) drawTile(getTile(map,c,r),c*TILE-cam.x,r*TILE-cam.y,c,r);
   for(const port of (currentMapDef().portals||[])){
     const sx=port.tx*TILE-cam.x+TILE/2, sy=port.ty*TILE-cam.y;
     if(sx<-60||sx>VW+60||sy<-60||sy>VH+60) continue;
     if(!port.reqFlag||hasFlag(port.reqFlag)){
       const a=0.4+0.3*Math.sin(G.frame*0.06);
       ctx.globalAlpha=a; ctx.font='13px Cinzel, serif'; ctx.fillStyle='#c0a0ff';
-      ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText(port.label,sx,sy-8);
-      ctx.globalAlpha=1;
+      ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(port.label,sx,sy-8); ctx.globalAlpha=1;
     }
   }
-
-  // Entities
-  for(const e of currentEntities()){
-    if(!e.alive) continue;
-    e.draw(ctx, cam, G.frame);
-  }
-
-  // Player
-  G.player.draw(ctx, cam, G.frame);
-
-  // Particles & floats
-  for(const p of G.particles) p.draw(ctx, cam);
-  for(const f of G.floatTexts) f.draw(ctx, cam);
-
-  // Vignette
+  for(const e of currentEntities()){ if(!e.alive) continue; e.draw(ctx,cam,G.frame); }
+  G.player.draw(ctx,cam,G.frame);
+  for(const p of G.particles) p.draw(ctx,cam);
+  for(const f of G.floatTexts) f.draw(ctx,cam);
   const vig=ctx.createRadialGradient(VW/2,VH/2,VH*0.25,VW/2,VH/2,VH*0.85);
   vig.addColorStop(0,'transparent'); vig.addColorStop(1,'rgba(0,0,0,0.55)');
   ctx.fillStyle=vig; ctx.fillRect(0,0,VW,VH);
-
-  // Theme-specific overlay
   const theme=currentMapDef()?.theme;
-  if(theme==='cave'||theme==='dungeon'){
-    ctx.fillStyle='rgba(0,0,0,0.18)'; ctx.fillRect(0,0,VW,VH);
-  }
-  if(theme==='swamp'){
-    ctx.fillStyle='rgba(0,30,0,0.1)'; ctx.fillRect(0,0,VW,VH);
-  }
+  if(theme==='cave'||theme==='dungeon'){ ctx.fillStyle='rgba(0,0,0,0.18)'; ctx.fillRect(0,0,VW,VH); }
+  if(theme==='swamp'){ ctx.fillStyle='rgba(0,30,0,0.1)'; ctx.fillRect(0,0,VW,VH); }
 }
 
-// ── MAIN UPDATE LOOP ──────────────────────────────────────────────
 function update() {
   if(!G.running) return;
-  G.frame++;
-  G.playTime++;
-
+  G.frame++; G.playTime++;
   const p=G.player;
   if(p.invincible>0) p.invincible--;
   if(p.atkCooldown>0) p.atkCooldown--;
-
-  // Movement
   const keys=G.keys;
-  let dx=0, dy=0;
+  let dx=0,dy=0;
   if(keys['ArrowLeft']||keys['a']||keys['A']){ dx=-1; p.dir='left'; }
   if(keys['ArrowRight']||keys['d']||keys['D']){ dx=1; p.dir='right'; }
   if(keys['ArrowUp']||keys['w']||keys['W']){ dy=-1; p.dir='up'; }
   if(keys['ArrowDown']||keys['s']||keys['S']){ dy=1; p.dir='down'; }
-
   if(dx&&dy){ dx*=0.707; dy*=0.707; }
-
   if(dx||dy){
-    const spd=p.totalSpeed;
-    const map=currentMap();
+    const spd=p.totalSpeed; const map=currentMap();
     const nx=p.wx+dx*spd, ny=p.wy+dy*spd;
     if(canWalkAt(map,nx,p.wy)) p.wx=nx;
     if(canWalkAt(map,p.wx,ny)) p.wy=ny;
     p.frame=Math.floor(G.frame/8)%4;
   }
-
-  // Camera
-  G.camera.x=Math.max(0,Math.min(p.wx-VW/2, MAP_COLS*TILE-VW));
-  G.camera.y=Math.max(0,Math.min(p.wy-VH/2, MAP_ROWS*TILE-VH));
-
-  // Portal auto-step
+  G.camera.x=Math.max(0,Math.min(p.wx-VW/2,MAP_COLS*TILE-VW));
+  G.camera.y=Math.max(0,Math.min(p.wy-VH/2,MAP_ROWS*TILE-VH));
   if(!G.transitioning){
     const ptx=Math.floor(p.wx/TILE), pty=Math.floor(p.wy/TILE);
     for(const port of (currentMapDef().portals||[])){
       if(port.tx===ptx&&port.ty===pty){
-        if(!port.reqFlag||hasFlag(port.reqFlag)){
-          travelTo(port.toMap,port.toX,port.toY);
-        } else {
-          // Only show once
-          if(!G._portMsgShown) { addMsg(`Path blocked. ${port.label}`,'msg-info'); G._portMsgShown=true; }
-        }
+        if(!port.reqFlag||hasFlag(port.reqFlag)) travelTo(port.toMap,port.toX,port.toY);
+        else if(!G._portMsgShown){ addMsg(`Path blocked. ${port.label}`,'msg-info'); G._portMsgShown=true; }
         break;
       } else { G._portMsgShown=false; }
     }
   }
-
-  // HP regen (slow)
-  if(G.frame%300===0 && p.hp<p.maxHp && p.hp>0){
-    p.hp=Math.min(p.maxHp,p.hp+2);
-    updateBars();
-  }
-  // MP regen
-  if(G.frame%120===0 && p.mp<p.maxMp){
-    p.mp=Math.min(p.maxMp,p.mp+1);
-    updateBars();
-  }
-
-  // Update entities
+  if(G.frame%300===0&&p.hp<p.maxHp&&p.hp>0){ p.hp=Math.min(p.maxHp,p.hp+2); updateBars(); }
+  if(G.frame%120===0&&p.mp<p.maxMp){ p.mp=Math.min(p.maxMp,p.mp+1); updateBars(); }
   const map=currentMap();
   for(const e of currentEntities()){
-    if(e.type==='enemy'&&e.alive){
-      e.update(map, p, G.particles, G.floatTexts, G.frame);
-    } else if(e.type==='npc'){
-      e.update(G.frame);
-    }
+    if(e.type==='enemy'&&e.alive) e.update(map,p,G.particles,G.floatTexts,G.frame);
+    else if(e.type==='npc') e.update(G.frame);
   }
-
-  // Particle & float cleanup
   for(let i=G.particles.length-1;i>=0;i--){ G.particles[i].update(); if(G.particles[i].life<=0) G.particles.splice(i,1); }
   for(let i=G.floatTexts.length-1;i>=0;i--){ G.floatTexts[i].update(); if(G.floatTexts[i].life<=0) G.floatTexts.splice(i,1); }
-
-  // Periodic minimap update
   if(G.frame%90===0) updateMinimap();
 }
 
-// ── GAME LOOP ─────────────────────────────────────────────────────
-function gameLoop() {
-  update();
-  drawFrame();
-  requestAnimationFrame(gameLoop);
-}
+function gameLoop() { update(); drawFrame(); requestAnimationFrame(gameLoop); }
 
-// ── INPUT ─────────────────────────────────────────────────────────
 document.addEventListener('keydown',e=>{
   G.keys[e.key]=true;
   if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
   if(!G.running) return;
-
   switch(e.key){
     case 'e': case 'E': case ' ':
       e.preventDefault();
@@ -2509,10 +1880,8 @@ document.addEventListener('keydown',e=>{
       if(G.questOpen){ closeQuestLog(); return; }
       if(G.shopOpen){ closeShop(); return; }
       interact(); break;
-    case 'i': case 'I':
-      G.invOpen?closeInventory():openInventory(); break;
-    case 'q': case 'Q':
-      G.questOpen?closeQuestLog():openQuestLog(); break;
+    case 'i': case 'I': G.invOpen?closeInventory():openInventory(); break;
+    case 'q': case 'Q': G.questOpen?closeQuestLog():openQuestLog(); break;
     case 'Escape':
       if(G.dialogOpen) closeDialog();
       else if(G.invOpen) closeInventory();
@@ -2526,35 +1895,25 @@ document.addEventListener('keydown',e=>{
   }
 });
 document.addEventListener('keyup',e=>{ G.keys[e.key]=false; });
-
-// Click to attack
 canvas.addEventListener('click',e=>{
   if(!G.running||G.dialogOpen||G.invOpen||G.questOpen||G.shopOpen) return;
   interact();
 });
 
-// ── TITLE SCREEN STARS ────────────────────────────────────────────
 (function makeStars(){
   const c=document.getElementById('ts-stars');
   for(let i=0;i<150;i++){
-    const s=document.createElement('div');
-    s.className='ts-star';
+    const s=document.createElement('div'); s.className='ts-star';
     const sz=Math.random()*2.5+0.3;
     s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*6}s;animation-duration:${2+Math.random()*5}s`;
     c.appendChild(s);
   }
 })();
 
-// ── START BUTTON ─────────────────────────────────────────────────
 document.getElementById('ts-start').addEventListener('click',()=>{
   const ts=document.getElementById('title-screen');
-  ts.style.transition='opacity 1s';
-  ts.style.opacity='0';
-  setTimeout(()=>{
-    ts.style.display='none';
-    initGame();
-    gameLoop();
-  },1000);
+  ts.style.transition='opacity 1s'; ts.style.opacity='0';
+  setTimeout(()=>{ ts.style.display='none'; initGame(); gameLoop(); },1000);
 });
 </script>
 </body>
